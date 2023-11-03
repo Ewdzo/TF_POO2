@@ -3,11 +3,11 @@ package org.example;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import org.example.entities.CategoriaDeDespesa;
-import org.example.entities.ContaBancaria;
-import org.example.entities.PessoaFisica;
-import org.example.entities.PessoaJuridica;
-import org.example.entities.Transacao;
+import org.example.example_entities.CategoriaDeDespesa;
+import org.example.example_entities.ContaBancaria;
+import org.example.example_entities.PessoaFisica;
+import org.example.example_entities.PessoaJuridica;
+import org.example.example_entities.Transacao;
 
 import jakarta.persistence.EntityManager;
 

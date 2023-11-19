@@ -30,4 +30,6 @@ public class Media {
 
     double grade;
     Director director;
+    String description;
+    String photo;
 }

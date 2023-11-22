@@ -5,6 +5,7 @@ import java.util.GregorianCalendar;
 
 import gui.views.HomePage;
 import gui.views.LoginPage;
+import helper.Example;
 import helper.HibernateController;
 import helper.HibernateManager;
 import javafx.application.Application;

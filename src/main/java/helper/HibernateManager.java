@@ -22,7 +22,7 @@ public class HibernateManager {
     EntityManager em;
 
     HibernateManager() {
-        emf = Persistence.createEntityManagerFactory("trabalhoFinalPOO");
+        emf = Persistence.createEntityManagerFactory("HibernatePOO2");
         em = emf.createEntityManager();
     }
 
@@ -37,6 +37,8 @@ public class HibernateManager {
             em.persist(newActor);
 
             em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Registro de Ator Falhou;");
         } finally {
             em.close();
         }
@@ -53,6 +55,8 @@ public class HibernateManager {
             em.persist(newDirector);
 
             em.getTransaction().commit();
+        } catch (Exception e) {
+            System.out.println("Registro de Diretor Falhou;");
         } finally {
             em.close();
         }
@@ -70,9 +74,11 @@ public class HibernateManager {
 
             em.getTransaction().commit();
 
+        } catch (Exception e) {
+            System.out.println("Registro de Filme Falhou;");
         } finally {
             em.close();
-        }  
+        }
     }
 
     public static void registerSeries(String title, List<Actor> cast, double grade, Director director, String description, String photo, int seasons, int episodes) {
@@ -87,9 +93,11 @@ public class HibernateManager {
 
             em.getTransaction().commit();
 
+        } catch (Exception e) {
+            System.out.println("Registro de Serie Falhou;");
         } finally {
             em.close();
-        }  
+        }
     }
 
     public static Actor searchActor(String CPF) {
@@ -105,7 +113,7 @@ public class HibernateManager {
             return actor;
         } catch (Exception e) {
             return null;
-        }finally {
+        } finally {
             em.close();
         }
     }

@@ -10,7 +10,6 @@ import org.example.entities.Director;
 import org.example.entities.Movie;
 import org.example.entities.Series;
 import org.example.entities.User;
-import org.example.example_entities.ContaBancaria;
 import org.example.persistence.CustomPersistenceUnitInfo;
 import org.hibernate.jpa.HibernatePersistenceProvider;
 

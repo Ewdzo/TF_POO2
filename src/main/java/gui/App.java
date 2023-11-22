@@ -31,7 +31,7 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class mainApplication extends Application{
+public class App extends Application{
 
 	@Override
   	public void start(Stage primaryStage) {
@@ -145,7 +145,7 @@ public class mainApplication extends Application{
 		stage.setScene(loginScene);
   	};
 
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		launch(args);
 	};
 

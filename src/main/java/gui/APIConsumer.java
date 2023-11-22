@@ -11,7 +11,7 @@ import javafx.scene.control.TextField;
 
 import java.net.URL;
 import java.util.ResourceBundle;
-public class mainController implements Initializable {
+public class APIConsumer implements Initializable {
 
     @FXML
     private Label cons_dia;

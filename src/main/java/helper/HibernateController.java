@@ -182,15 +182,13 @@ public class HibernateController {
         }
     }
 
-    public static boolean registerUser(String CPF, String name, Date birthDate, String photo) {
-        Director newDirector = new Director(CPF, name, birthDate, photo);
-
+    public static boolean registerUser(User newUser) {
         EntityManager em = HibernateManager.em;
 
         try {
             em.getTransaction().begin();
             
-            em.persist(newDirector);
+            em.persist(newUser);
 
             em.getTransaction().commit();
 

@@ -1,9 +1,12 @@
 package gui;
 
 import java.io.IOException;
+import java.util.GregorianCalendar;
 
 import gui.views.HomePage;
 import gui.views.LoginPage;
+import helper.HibernateController;
+import helper.HibernateManager;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
@@ -34,8 +37,6 @@ public class mainApplication extends Application{
   	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Sistema de Compartilhamento de Filmes e Séries");
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/iconNetflix.png")));
-
-		
 
 		// Layout principal
 		BorderPane root = new BorderPane();

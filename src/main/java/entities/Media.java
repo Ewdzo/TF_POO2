@@ -34,10 +34,9 @@ public class Media {
     String photo;
     
 
-    public Media(String title, List<Actor> cast, double grade, Director director, String description, String photo) {
+    public Media(String title, List<Actor> cast, Director director, String description, String photo) {
         this.title = title;
         this.cast = cast;
-        this.grade = grade;
         this.director = director;
         this.description = description;
         this.photo = photo;

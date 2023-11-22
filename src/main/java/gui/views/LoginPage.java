@@ -92,16 +92,19 @@ public class LoginPage extends BorderPane {
     loginLabel.setStyle("-fx-text-fill: #FFFFFF;");
 
     TextField usuario = new TextField();
+    usuario.setId("usuarioTextField");
     usuario.setPromptText("E-mail");
     usuario.setMinHeight(40); // Altura mínima do campo de texto
     usuario.setMaxWidth(300); // Largura máxima do campo de texto
 
     PasswordField senha = new PasswordField();
+    senha.setId("senhaTextField");
     senha.setPromptText("Senha");
     senha.setMinHeight(40);
     senha.setMaxWidth(300); // Largura máxima do campo de senha
 
     Button loginButton = new Button("Entrar");
+    loginButton.setId(getAccessibleHelp());
     loginButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
     loginButton.setMaxHeight(40); // Altura máxima do botão
     loginButton.setMaxWidth(300); // Largura máxima do botão

@@ -15,8 +15,7 @@ import entities.User;
 //Facade
 public class HibernateController {
 		
-	public static void registerActor(String CPF, String name, Date birthDate, String photo) {
-        Actor newActor = new Actor(CPF, name, birthDate, photo);
+	public static void registerActor(Actor newActor) {
 
         EntityManager em = new HibernateManager().em;
 
@@ -31,8 +30,7 @@ public class HibernateController {
         }
     }
 
-    public static void registerDirector(String CPF, String name, Date birthDate, String photo) {
-        Director newDirector = new Director(CPF, name, birthDate, photo);
+    public static void registerDirector(Director newDirector) {
 
         EntityManager em = new HibernateManager().em;
 
@@ -47,8 +45,7 @@ public class HibernateController {
         }
     }
 
-    public static void registerMovie(String title, List<Actor> cast, double grade, Director director, String description, String photo) {
-        Movie newMovie = new Movie(title, cast, grade, director, description, photo);
+    public static void registerMovie(Movie newMovie) {
         
         EntityManager em = new HibernateManager().em;
 
@@ -64,8 +61,7 @@ public class HibernateController {
         }  
     }
 
-    public static void registerSeries(String title, List<Actor> cast, double grade, Director director, String description, String photo, int seasons, int episodes) {
-        Series newSeries = new Series(title, cast, grade, director, description, photo, seasons, episodes);
+    public static void registerSeries(Series newSeries) {
 
         EntityManager em = new HibernateManager().em;
 

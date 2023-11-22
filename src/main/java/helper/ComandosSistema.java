@@ -5,10 +5,10 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 
-import insercoes.Aplicacao;
-import insercoes.Despesa;
-import insercoes.Emprestimo;
-import insercoes.Receita;
+import entities.Aplicacao;
+import entities.Despesa;
+import entities.Emprestimo;
+import entities.Receita;
 import relatorio.FabricaRelatorio;
 import relatorio.Relatorio;
 
@@ -270,4 +270,8 @@ public class ComandosSistema {
         }
         return r;
 	}
+
+
+
+
 }

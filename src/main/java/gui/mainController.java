@@ -1,10 +1,6 @@
 package gui;
 
 import helper.ComandosSistema;
-import insercoes.Aplicacao;
-import insercoes.Despesa;
-import insercoes.Emprestimo;
-import insercoes.Receita;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -17,6 +13,11 @@ import javafx.scene.control.TextField;
 import java.net.URL;
 import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
+
+import entities.Aplicacao;
+import entities.Despesa;
+import entities.Emprestimo;
+import entities.Receita;
 import relatorio.*;
 public class mainController implements Initializable {
 

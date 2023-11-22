@@ -1,9 +1,18 @@
 package org.example.entities;
 
+import java.util.List;
+
 import jakarta.persistence.Entity;
 
 @Entity
 public class Series extends Media {
-    int seasons;
-    int episodes;
+    public int seasons;
+    public int episodes;
+
+    public Series(String title, List<Actor> cast, double grade, Director director, String description, String photo, int seasons, int episodes) {
+        super(title, cast, grade, director, description, photo);
+        this.seasons = seasons;
+        this.episodes = episodes;
+    };
+
 }

@@ -43,7 +43,7 @@ public class RegistroPage extends BorderPane {
     navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
 
     // Botão Home com logo da Netflix
-    Image netflixLogo = new Image("file:./assets/iconNetflix.png"); // Substitua com o caminho correto da imagem
+    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
     ImageView logoView = new ImageView(netflixLogo);
     logoView.setFitHeight(30); // Ajuste conforme necessário
     logoView.setPreserveRatio(true);
@@ -80,7 +80,7 @@ public class RegistroPage extends BorderPane {
     mainContent.setSpacing(50); // Espaçamento de 20px entre os elementos
 
     // Carregar a imagem de fundo
-    Image backgroundImage = new Image("file:./assets/backgroundRegistro.png"); // Substitua com o caminho correto da imagem
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundRegistro.png")); // Substitua com o caminho correto da imagem
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
     BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);

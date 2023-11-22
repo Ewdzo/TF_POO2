@@ -1,4 +1,4 @@
-package Interface;
+package gui;
 
 import helper.ComandosSistema;
 import insercoes.Aplicacao;

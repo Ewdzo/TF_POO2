@@ -6,6 +6,14 @@
     "configurations": [
         {
             "type": "java",
+            "name": "mainApplication",
+            "request": "launch",
+            "mainClass": "Interface.mainApplication",
+            "projectName": "jpa_2023_c5_e1",
+            "vmArgs": "--module-path \"./lib/javafx-sdk-21/lib\" --add-modules=javafx.controls,javafx.fxml"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"

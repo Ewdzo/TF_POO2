@@ -25,12 +25,14 @@ public class Media {
         )
     List<Actor> cast;
 
-    double grade;
+    double grade = 10;
+    int reviews = 1;
 
     @ManyToOne
     Director director;
     String description;
     String photo;
+    
 
     public Media(String title, List<Actor> cast, double grade, Director director, String description, String photo) {
         this.title = title;
@@ -40,4 +42,10 @@ public class Media {
         this.description = description;
         this.photo = photo;
     }
+
+    public void setGrade(double grade){
+        reviews++;
+        this.grade += ((grade - this.grade) / reviews );
+    }
+
 }

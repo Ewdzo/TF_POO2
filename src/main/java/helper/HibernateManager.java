@@ -4,12 +4,14 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class HibernateManager {
-    String puName = "pu-name";
-    EntityManagerFactory emf;
-    EntityManager em;
+    static final String puName = "pu-name";
+    static EntityManagerFactory emf;
+    static EntityManager em;
 
-    HibernateManager() {
-        emf = Persistence.createEntityManagerFactory("HibernatePOO2");
-        em = emf.createEntityManager();
+    public EntityManager getEntityManager() {
+        if(emf == null) emf = Persistence.createEntityManagerFactory("HibernatePOO2");
+        if(em == null) em = emf.createEntityManager();
+        
+        return em; 
     }
 }

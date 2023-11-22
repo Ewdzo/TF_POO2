@@ -2,6 +2,7 @@ package entities;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
@@ -17,7 +18,7 @@ public class Media {
     @Id
     String title;
     
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
         name = "ActorMedia",
 		joinColumns = @JoinColumn(name = "media"),
@@ -28,7 +29,7 @@ public class Media {
     double grade = 10;
     int reviews = 1;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     Director director;
     String description;
     String photo;

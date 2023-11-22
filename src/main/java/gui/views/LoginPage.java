@@ -104,7 +104,7 @@ public class LoginPage extends BorderPane {
     senha.setMaxWidth(300); // Largura máxima do campo de senha
 
     Button loginButton = new Button("Entrar");
-    loginButton.setId(getAccessibleHelp());
+    loginButton.setId("loginButton");
     loginButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
     loginButton.setMaxHeight(40); // Altura máxima do botão
     loginButton.setMaxWidth(300); // Largura máxima do botão

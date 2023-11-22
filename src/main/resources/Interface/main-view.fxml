@@ -1,0 +1,717 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<TabPane prefHeight="580.0" prefWidth="624.0" stylesheets="@bootstrap3.css" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Interface.mainController">
+  <tabs>
+    <Tab id="inserir_tab" closable="false" text="Inserir">
+      <content>
+        <AnchorPane styleClass="content">
+          <children>
+            <TabPane prefHeight="498.0" prefWidth="610.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab id="receita_tab" closable="false" text="Receita">
+                  <content>
+                    <AnchorPane>
+                      <children>
+                        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-17.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                            <Label alignment="CENTER" text="RECEITA">
+                              <font>
+                                <Font size="37.0" />
+                              </font>
+                            </Label>
+                            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="9.0" prefWidth="600.0">
+                              <padding>
+                                <Insets top="5.0" />
+                              </padding>
+                            </Separator>
+                            <VBox alignment="CENTER">
+                              <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Nome da Receita:">
+                                  <font>
+                                    <Font size="18.0" />
+                                  </font>
+                                  <padding>
+                                    <Insets bottom="5.0" />
+                                  </padding>
+                                  <VBox.margin>
+                                    <Insets top="10.0" />
+                                  </VBox.margin>
+                                </Label>
+                                <TextField fx:id="nomeReceita" alignment="CENTER" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0" styleClass="text-input">
+                                  <padding>
+                                    <Insets bottom="5.0" />
+                                  </padding>
+                                  <font>
+                                    <Font size="16.0" />
+                                  </font>
+                                  <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                  </VBox.margin>
+                                </TextField>
+                                <Label alignment="CENTER" minWidth="200.0" text="Valor da Receita:">
+                                  <font>
+                                    <Font size="18.0" />
+                                  </font>
+                                </Label>
+                                <TextField fx:id="valorReceita" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="200.0" styleClass="text-field">
+                                  <font>
+                                    <Font size="16.0" />
+                                  </font>
+                                  <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                  </VBox.margin>
+                                </TextField>
+                                <Label alignment="CENTER" minWidth="200.0" text="Data do Recebimento:">
+                                  <font>
+                                    <Font size="18.0" />
+                                  </font>
+                                </Label>
+                                <DatePicker fx:id="dataReceita" prefHeight="30.0" prefWidth="200.0" promptText="00/00/00" styleClass="date-picker">
+                                  <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                  </VBox.margin>
+                                </DatePicker>
+                                                <Label alignment="CENTER" minWidth="200.0" text="Observações:">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextArea fx:id="obsReceita" maxWidth="400.0" prefHeight="90.0" prefWidth="400.0" styleClass="text-area">
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </TextArea>
+                              </children>
+                            </VBox>
+                          <Button fx:id="inserirReceita" alignment="CENTER" mnemonicParsing="false" onAction="#insereReceita" style="-fx-background-radius: 5px;" text="Inserir" textAlignment="CENTER">
+                            <VBox.margin>
+                              <Insets bottom="5.0" top="10.0" />
+                            </VBox.margin>
+                            <font>
+                              <Font size="18.0" />
+                            </font>
+                                             <styleClass>
+                                                <String fx:value="button" />
+                                                <String fx:value="primary" />
+                                             </styleClass>
+                          </Button>
+                          </children>
+                        </VBox>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab id="emprestimo_tab" closable="false" text="Empréstimo">
+                  <content>
+                    <AnchorPane>
+                      <children>
+                        <AnchorPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                            <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                              <children>
+                                <Label alignment="CENTER" text="EMPRÉSTIMOS">
+                                  <font>
+                                    <Font size="37.0" />
+                                  </font>
+                                </Label>
+                                <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="9.0" prefWidth="600.0">
+                                  <padding>
+                                    <Insets top="5.0" />
+                                  </padding>
+                                </Separator>
+                                                <HBox alignment="CENTER">
+                                                   <children>
+                                      <VBox alignment="TOP_CENTER">
+                                        <children>
+                                          <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="28.0" prefWidth="219.0" text="Nome da Empréstimo">
+                                            <font>
+                                              <Font size="18.0" />
+                                            </font>
+                                            <padding>
+                                              <Insets bottom="5.0" />
+                                            </padding>
+                                            <VBox.margin>
+                                              <Insets top="10.0" />
+                                            </VBox.margin>
+                                          </Label>
+                                          <TextField fx:id="nomeEmprestimo" alignment="CENTER" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0">
+                                            <padding>
+                                              <Insets bottom="5.0" />
+                                            </padding>
+                                            <font>
+                                              <Font size="16.0" />
+                                            </font>
+                                            <VBox.margin>
+                                              <Insets bottom="5.0" />
+                                            </VBox.margin>
+                                          </TextField>
+                                          <Label alignment="CENTER" minWidth="200.0" text="Valor do Empréstimo">
+                                            <font>
+                                              <Font size="18.0" />
+                                            </font>
+                                          </Label>
+                                          <TextField fx:id="valorEmprestimo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
+                                            <font>
+                                              <Font size="16.0" />
+                                            </font>
+                                            <VBox.margin>
+                                              <Insets bottom="5.0" />
+                                            </VBox.margin>
+                                          </TextField>
+                                          <Label alignment="CENTER" minWidth="200.0" text="Data do Empréstimo:">
+                                            <font>
+                                              <Font size="18.0" />
+                                            </font>
+                                          </Label>
+                                          <DatePicker fx:id="dataEmprestimo" prefHeight="30.0" prefWidth="200.0" promptText="00/00/00">
+                                            <VBox.margin>
+                                              <Insets bottom="10.0" />
+                                            </VBox.margin>
+                                          </DatePicker>
+                                                            <Label alignment="CENTER" minWidth="200.0" text="Taxa de Juros">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="jurosemprestimo" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                            </TextField>
+                                        </children>
+                                      </VBox>
+                                                      <VBox alignment="CENTER">
+                                                         <children>
+                                                            <Label alignment="CENTER" minWidth="200.0" text="Numero de Parcelas:">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="numParcelas" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                            </TextField>
+                                                            <Label alignment="CENTER" minWidth="200.0" text="Valor da Parcela:">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextField fx:id="valorParcela" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
+                                                               <font>
+                                                                  <Font size="16.0" />
+                                                               </font>
+                                                            </TextField>
+                                                            <Label alignment="CENTER" minWidth="200.0" text="Observações">
+                                                               <font>
+                                                                  <Font size="18.0" />
+                                                               </font>
+                                                            </Label>
+                                                            <TextArea fx:id="obsEmprestimo" prefHeight="96.0" prefWidth="200.0">
+                                                               <VBox.margin>
+                                                                  <Insets bottom="10.0" left="10.0" right="10.0" />
+                                                               </VBox.margin>
+                                                            </TextArea>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                   <VBox.margin>
+                                                      <Insets bottom="10.0" left="20.0" right="20.0" />
+                                                   </VBox.margin>
+                                                </HBox>
+                              <Button fx:id="inserirEmprestimo" alignment="CENTER" mnemonicParsing="false" onAction="#insereImprestimo" style="-fx-background-radius: 5px;" text="Inserir" textAlignment="CENTER">
+                                <VBox.margin>
+                                  <Insets bottom="10.0" top="10.0" />
+                                </VBox.margin>
+                                <font>
+                                  <Font size="18.0" />
+                                </font>
+                                                   <styleClass>
+                                                      <String fx:value="button" />
+                                                      <String fx:value="primary" />
+                                                   </styleClass>
+                              </Button>
+                              </children>
+                            </VBox>
+                          </children>
+                        </AnchorPane>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab id="despesa_tab" closable="false" text="Despesa">
+                  <content>
+                    <AnchorPane>
+                      <children>
+                        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                            <Label alignment="CENTER" text="DESPESAS">
+                              <font>
+                                <Font size="37.0" />
+                              </font>
+                            </Label>
+                            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="9.0" prefWidth="600.0">
+                              <padding>
+                                <Insets top="5.0" />
+                              </padding>
+                            </Separator>
+                            <VBox alignment="TOP_CENTER">
+                              <children>
+                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" text="Nome da Despesa:">
+                                  <font>
+                                    <Font size="18.0" />
+                                  </font>
+                                  <padding>
+                                    <Insets bottom="5.0" />
+                                  </padding>
+                                  <VBox.margin>
+                                    <Insets top="10.0" />
+                                  </VBox.margin>
+                                </Label>
+                                <TextField fx:id="nomeDespesa" alignment="CENTER" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0">
+                                  <padding>
+                                    <Insets bottom="5.0" />
+                                  </padding>
+                                  <font>
+                                    <Font size="16.0" />
+                                  </font>
+                                  <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                  </VBox.margin>
+                                </TextField>
+                                <Label alignment="CENTER" minWidth="200.0" text="Valor da Despesa:">
+                                  <font>
+                                    <Font size="18.0" />
+                                  </font>
+                                </Label>
+                                <TextField fx:id="valorDespesa" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
+                                  <font>
+                                    <Font size="16.0" />
+                                  </font>
+                                  <VBox.margin>
+                                    <Insets bottom="5.0" />
+                                  </VBox.margin>
+                                </TextField>
+                                <Label alignment="CENTER" minWidth="200.0" text="Data:">
+                                  <font>
+                                    <Font size="18.0" />
+                                  </font>
+                                </Label>
+                                <DatePicker fx:id="dataDespesa" prefHeight="30.0" prefWidth="200.0" promptText="00/00/00">
+                                  <VBox.margin>
+                                    <Insets bottom="10.0" />
+                                  </VBox.margin>
+                                </DatePicker>
+                                                <Label text="Descrição:">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                   <VBox.margin>
+                                                      <Insets bottom="5.0" />
+                                                   </VBox.margin>
+                                                </Label>
+                                                <TextArea fx:id="obsDesp" maxWidth="400.0" prefHeight="90.0" prefWidth="400.0" style="-fx-background-radius: 5px;">
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </TextArea>
+                                <Button fx:id="inserirDespesa" alignment="CENTER" mnemonicParsing="false" onAction="#insereDespesa" style="-fx-background-radius: 5px;" text="Inserir" textAlignment="CENTER">
+                                  <VBox.margin>
+                                    <Insets bottom="5.0" top="10.0" />
+                                  </VBox.margin>
+                                  <font>
+                                    <Font size="18.0" />
+                                  </font>
+                                                   <styleClass>
+                                                      <String fx:value="button" />
+                                                      <String fx:value="primary" />
+                                                   </styleClass>
+                                </Button>
+                              </children>
+                            </VBox>
+                          </children>
+                        </VBox>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab id="aplicacao_tab" closable="false" text="Aplicacao">
+                  <content>
+                    <AnchorPane>
+                      <children>
+                        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="-1.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <children>
+                            <Label alignment="TOP_CENTER" contentDisplay="CENTER" text="INVESTIMENTOS">
+                              <font>
+                                <Font size="37.0" />
+                              </font>
+                            </Label>
+                            <Separator maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="9.0" prefWidth="600.0">
+                              <padding>
+                                <Insets top="5.0" />
+                              </padding>
+                            </Separator>
+                            <HBox alignment="TOP_CENTER" spacing="2.0">
+                              <children>
+                                <VBox alignment="TOP_CENTER" prefWidth="288.0">
+                                  <children>
+                                    <Label prefWidth="187.0" text="Nome do Investimento:">
+                                      <font>
+                                        <Font size="18.0" />
+                                      </font>
+                                      <padding>
+                                        <Insets bottom="5.0" />
+                                      </padding>
+                                      <VBox.margin>
+                                        <Insets top="10.0" />
+                                      </VBox.margin>
+                                    </Label>
+                                    <TextField fx:id="nomeInvest" alignment="CENTER" maxWidth="200.0" prefHeight="30.0" prefWidth="200.0">
+                                      <padding>
+                                        <Insets bottom="5.0" />
+                                      </padding>
+                                      <font>
+                                        <Font size="16.0" />
+                                      </font>
+                                      <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                      </VBox.margin>
+                                    </TextField>
+                                    <Label text="Valor do Investimento:">
+                                      <font>
+                                        <Font size="18.0" />
+                                      </font>
+                                    </Label>
+                                    <TextField fx:id="valorInvest" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="35.0" prefWidth="200.0">
+                                      <font>
+                                        <Font size="16.0" />
+                                      </font>
+                                      <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                      </VBox.margin>
+                                    </TextField>
+                                    <Label text="Data do Investimento:">
+                                      <font>
+                                        <Font size="18.0" />
+                                      </font>
+                                    </Label>
+                                    <DatePicker fx:id="dataInvest" prefHeight="30.0" prefWidth="200.0" promptText="00/00/00">
+                                      <VBox.margin>
+                                        <Insets bottom="10.0" />
+                                      </VBox.margin>
+                                    </DatePicker>
+                                  </children>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                </VBox>
+                                <VBox alignment="TOP_CENTER" prefWidth="300.0">
+                                  <children>
+                                    <Label alignment="CENTER" minWidth="300.0" text="Taxa de Juros:">
+                                      <font>
+                                        <Font size="18.0" />
+                                      </font>
+                                      <VBox.margin>
+                                        <Insets top="10.0" />
+                                      </VBox.margin>
+                                      <padding>
+                                        <Insets bottom="5.0" />
+                                      </padding>
+                                    </Label>
+                                    <TextField fx:id="taxaJuros" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="200.0">
+                                      <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                      </VBox.margin>
+                                      <font>
+                                        <Font size="16.0" />
+                                      </font>
+                                      <padding>
+                                        <Insets bottom="5.0" />
+                                      </padding>
+                                    </TextField>
+                                    <Label text="Tipo de Investimento">
+                                      <font>
+                                        <Font size="18.0" />
+                                      </font>
+                                    </Label>
+                                    <ChoiceBox fx:id="tipoInvest" prefHeight="30.0" prefWidth="200.0">
+                                      <VBox.margin>
+                                        <Insets bottom="5.0" />
+                                      </VBox.margin>
+                                      <padding>
+                                        <Insets bottom="5.0" />
+                                      </padding>
+                                    </ChoiceBox>
+                                    <Label text="Observação:">
+                                      <font>
+                                        <Font size="18.0" />
+                                      </font>
+                                    </Label>
+                                    <TextArea fx:id="obsInvest" prefHeight="96.0" prefWidth="200.0" promptText="Observação aqui">
+                                      <VBox.margin>
+                                        <Insets bottom="10.0" left="10.0" right="10.0" top="3.0" />
+                                      </VBox.margin>
+                                    </TextArea>
+                                  </children>
+                                                   <HBox.margin>
+                                                      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                   </HBox.margin>
+                                </VBox>
+                              </children>
+                                             <VBox.margin>
+                                                <Insets left="10.0" right="10.0" />
+                                             </VBox.margin>
+                            </HBox>
+                            <Button fx:id="inserirInvestimento" alignment="CENTER" mnemonicParsing="false" onAction="#insereAplicacao" text="Inserir" textAlignment="CENTER">
+                              <VBox.margin>
+                                <Insets bottom="5.0" top="5.0" />
+                              </VBox.margin>
+                              <font>
+                                <Font size="18.0" />
+                              </font>
+                                             <styleClass>
+                                                <String fx:value="button" />
+                                                <String fx:value="primary" />
+                                             </styleClass>
+                            </Button>
+                          </children>
+                        </VBox>
+                      </children>
+                    </AnchorPane>
+                  </content>
+                </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+      </content>
+         <styleClass>
+            <String fx:value=".menu-button" />
+            <String fx:value="action-btn" />
+         </styleClass>
+    </Tab>
+    <Tab id="consultar_tab" closable="false" text="Consultar">
+      <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+          <children>
+            <TabPane prefHeight="200.0" prefWidth="200.0" side="BOTTOM" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <tabs>
+                <Tab id="tabDiario" text="Diario">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Data">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                                <DatePicker fx:id="dataRefD" onAction="#mostrarDiaria" GridPane.columnIndex="1" />
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </GridPane>
+                                          <ScrollPane>
+                                             <content>
+                                                
+                                                <Label fx:id="labelDiario" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Resultado:">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </content>
+                                          </ScrollPane>
+                                       </children></VBox>
+                      </children>
+                              </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab id="tabAnual" text="Semanal">
+                  <content>
+                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                      <children>
+                        <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <DatePicker fx:id="dataRefS" onAction="#mostrarSemanal" GridPane.columnIndex="1" />
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Data">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </GridPane>
+                                          <ScrollPane>
+                                             <content>
+                                               
+                                                <Label fx:id="labelSemanal" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Resultado:">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </content>
+                                          </ScrollPane>
+                                       </children></VBox>
+                      </children>
+                              </AnchorPane>
+                  </content>
+                </Tab>
+                <Tab id="tabMensal" text="Mensal">
+                  <content>
+                    <AnchorPane>
+                      <children>
+                        <VBox alignment="TOP_CENTER" prefHeight="508.0" prefWidth="610.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <DatePicker fx:id="dataRefM" onAction="#mostrarMensal" GridPane.columnIndex="1" />
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Data">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </GridPane>
+                                          <ScrollPane>
+                                             <content>
+                                                
+                                                <Label fx:id="labelMensal" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Resultado:">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </content>
+                                          </ScrollPane>
+                                       </children></VBox>
+                      </children>
+                              </AnchorPane>
+                  </content>
+                </Tab>
+                        <Tab id="tabAnual" text="Anual">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <VBox alignment="TOP_CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <children>
+                                          <GridPane>
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="316.79998779296875" minWidth="10.0" prefWidth="310.39996337890625" />
+                                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="491.20001220703125" minWidth="10.0" prefWidth="313.60003662109375" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <DatePicker fx:id="dataRefA" onAction="#mostrarAnual" GridPane.columnIndex="1" />
+                                                <Label alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Data">
+                                                   <font>
+                                                      <Font size="18.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </children>
+                                             <VBox.margin>
+                                                <Insets top="10.0" />
+                                             </VBox.margin>
+                                          </GridPane>
+                                          <ScrollPane>
+                                             <content>                                       
+                                                <Label fx:id="labelAnual" alignment="CENTER" contentDisplay="CENTER" prefWidth="200.0" styleClass="tab-label" text="Resultado:">
+                                                   <font>
+                                                      <Font size="15.0" />
+                                                   </font>
+                                                   <padding>
+                                                      <Insets bottom="5.0" />
+                                                   </padding>
+                                                </Label>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </Tab>
+              </tabs>
+            </TabPane>
+          </children>
+        </AnchorPane>
+      </content>
+    </Tab>
+  </tabs>
+</TabPane>

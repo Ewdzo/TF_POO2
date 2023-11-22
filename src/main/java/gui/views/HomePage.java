@@ -94,8 +94,7 @@ public class HomePage extends BorderPane {
     // Carregar a imagem de fundo
     Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg")); // Substitua com o caminho correto da imagem
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
-    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
-        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
     contentBox.setBackground(new Background(bgImage));
 
     VBox filmesLancamentos = createCategory("Filmes Lançamentos", 5);

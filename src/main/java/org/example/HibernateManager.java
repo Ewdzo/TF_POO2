@@ -23,6 +23,9 @@ public class HibernateManager {
     EntityManager em;
 
     HibernateManager() {
+        props.put("hibernate.connection.url", "jdbc:mysql://localhost:3306/hibernate_poo2");
+        props.put("hibernate.connection.user", "root");
+        props.put("hibernate.connection.password", "facom");
         props.put("hibernate.show_sql", "true");
         props.put("hibernate.hbm2ddl.auto", "update");
 

@@ -9,6 +9,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToOne;
 
 @Entity
 @Inheritance(strategy =  InheritanceType.TABLE_PER_CLASS)
@@ -25,6 +26,8 @@ public class Media {
     List<Actor> cast;
 
     double grade;
+
+    @OneToOne
     Director director;
     String description;
     String photo;

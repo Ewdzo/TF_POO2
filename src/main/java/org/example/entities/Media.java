@@ -9,6 +9,7 @@ import jakarta.persistence.InheritanceType;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 
 @Entity
@@ -27,7 +28,7 @@ public class Media {
 
     double grade;
 
-    @OneToOne
+    @ManyToOne
     Director director;
     String description;
     String photo;

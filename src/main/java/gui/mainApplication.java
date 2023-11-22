@@ -33,7 +33,7 @@ public class mainApplication extends Application{
 	@Override
   	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Sistema de Compartilhamento de Filmes e Séries");
-		primaryStage.getIcons().add(new Image("./assets/iconNetflix.png"));
+		primaryStage.getIcons().add(new Image("file:./assets/iconNetflix.png"));
 
 		// Layout principal
 		BorderPane root = new BorderPane();
@@ -62,7 +62,7 @@ public class mainApplication extends Application{
 		navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
 
 		// Botão Home com logo da Netflix
-		Image netflixLogo = new Image("./assets/iconNetflix.png"); // Substitua com o caminho correto da imagem
+		Image netflixLogo = new Image("file:./assets/iconNetflix.png"); // Substitua com o caminho correto da imagem
 		ImageView logoView = new ImageView(netflixLogo);
 		logoView.setFitHeight(30); // Ajuste conforme necessário
 		logoView.setPreserveRatio(true);
@@ -100,7 +100,7 @@ public class mainApplication extends Application{
 		mainContent.setAlignment(Pos.CENTER);
 
 		// Carregar a imagem de fundo
-		Image backgroundImage = new Image("./assets/Netflix-Background.jpg"); // Substitua com o caminho correto da imagem
+		Image backgroundImage = new Image("file:./assets/Netflix-Background.jpg"); // Substitua com o caminho correto da imagem
 		BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
 		BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
 			BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);

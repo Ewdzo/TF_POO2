@@ -1,4 +1,11 @@
 package gui.views;
+import java.util.ArrayList;
+import java.util.List;
+
+import entities.Media;
+import entities.Movie;
+import entities.Series;
+import helper.HibernateController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,6 +29,8 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CategoriaPage extends BorderPane {
+  ArrayList<Movie> movies = HibernateController.getMovies(List.of("The Flash", "Spiderverse", "Dune", "Whiplash", "La La Land"));
+  ArrayList<Series> series = HibernateController.getSeries(List.of("Wandinha", "Breaking Bad", "Better Call Saul", "Peaky Blinders", "Atlanta"));
 
   public CategoriaPage() {
 
@@ -139,7 +148,7 @@ public class CategoriaPage extends BorderPane {
     }
   }
 
-  private VBox createCategory(String categoryName, int numberOfMovies) {
+  private VBox createCategory(String categoryName, List<? extends Media> medias) {
     VBox categoryBox = new VBox();
     categoryBox.setPadding(new Insets(10));
     categoryBox.setSpacing(10);
@@ -150,9 +159,102 @@ public class CategoriaPage extends BorderPane {
     HBox movieList = new HBox();
     movieList.setSpacing(10);
 
-    for (int i = 1; i <= numberOfMovies; i++) {
-      Button movieButton = new Button("Filme " + i);
-      movieButton.setStyle("-fx-background-color: #333333; -fx-text-fill: #FFFFFF;");
+    for (Media media : medias) {
+      // Botão para cada filme
+      Button movieButton = new Button();
+      movieButton.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
+
+      VBox movieBox = new VBox();
+      movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
+      movieBox.setAlignment(Pos.CENTER);
+
+      // Imagem do filme
+      Image movieImage = new Image(getClass().getResourceAsStream(media.getPhoto()));
+      ImageView imageView = new ImageView(movieImage);
+      imageView.setFitHeight(100); // Ajuste conforme necessário
+      imageView.setFitWidth(100);
+      imageView.setPreserveRatio(true);
+
+      // Título do filme
+      Label movieTitle = new Label(media.getTitle());
+      movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
+
+      movieBox.getChildren().addAll(imageView, movieTitle);
+      movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
+
+      movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
+
+      movieList.getChildren().add(movieButton);
+    }
+
+    categoryBox.getChildren().addAll(categoryLabel, movieList);
+    return categoryBox;
+  }
+
+  private VBox createCategory(String categoryName, List<? extends Media> medias1, List<? extends Media> medias2) {
+    VBox categoryBox = new VBox();
+    categoryBox.setPadding(new Insets(10));
+    categoryBox.setSpacing(10);
+
+    Label categoryLabel = new Label(categoryName);
+    categoryLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #FFFFFF;");
+
+    HBox movieList = new HBox();
+    movieList.setSpacing(10);
+    
+    for (Media media : medias1) {
+      Button movieButton = new Button();
+      movieButton.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
+
+      VBox movieBox = new VBox();
+      movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
+      movieBox.setAlignment(Pos.CENTER);
+
+      // Imagem do filme
+      Image movieImage = new Image(getClass().getResourceAsStream(media.getPhoto()));
+      ImageView imageView = new ImageView(movieImage);
+      imageView.setFitHeight(100); // Ajuste conforme necessário
+      imageView.setFitWidth(100);
+      imageView.setPreserveRatio(true);
+
+      // Título do filme
+      Label movieTitle = new Label(media.getTitle());
+      movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
+
+      movieBox.getChildren().addAll(imageView, movieTitle);
+      movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
+
+      // Adiciona ação ao botão
+      movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
+
+      movieList.getChildren().add(movieButton);
+    }
+
+    for (Media media : medias2) {
+      Button movieButton = new Button();
+      movieButton.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
+
+      VBox movieBox = new VBox();
+      movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
+      movieBox.setAlignment(Pos.CENTER);
+
+      // Imagem do filme
+      Image movieImage = new Image(getClass().getResourceAsStream(media.getPhoto()));
+      ImageView imageView = new ImageView(movieImage);
+      imageView.setFitHeight(100); // Ajuste conforme necessário
+      imageView.setFitWidth(100);
+      imageView.setPreserveRatio(true);
+
+      // Título do filme
+      Label movieTitle = new Label(media.getTitle());
+      movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
+
+      movieBox.getChildren().addAll(imageView, movieTitle);
+      movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
+
+      // Adiciona ação ao botão
+      movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
+
       movieList.getChildren().add(movieButton);
     }
 
@@ -173,4 +275,12 @@ public class CategoriaPage extends BorderPane {
     Scene CategoryScene = new Scene(CategoriaPage, stage.getWidth(), stage.getHeight());
     stage.setScene(CategoryScene);
   }
+  
+  private void switchToSelectedPage(Button button, Media media) {
+    Stage stage = (Stage) button.getScene().getWindow();
+    SelectedPage SelectedPage = new SelectedPage(media);
+    Scene SelectedScene = new Scene(SelectedPage, stage.getWidth(), stage.getHeight());
+    stage.setScene(SelectedScene);
+  }
+
 }

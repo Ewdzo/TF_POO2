@@ -18,16 +18,16 @@ public class Example {
         Director d1 = new Director("000.000.000-04", "Denis Villenueve", new GregorianCalendar(2001, 11, 12).getTime(), "path");
         
         Movie m1 = new Movie("Dune", List.of(a1, a2), d1, "Filme sobre areia e minhoca", "../assets/dune.jpeg");
-        Movie m2 = new Movie("The Flash", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/dune.jpeg");
-        Movie m3 = new Movie("Spiderverse", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/dune.jpeg");
-        Movie m4 = new Movie("Whiplash", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/dune.jpeg");
-        Movie m5 = new Movie("La La Land", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/dune.jpeg");
+        Movie m2 = new Movie("The Flash", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/the_flash.jpeg");
+        Movie m3 = new Movie("Spiderverse", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/spiderverse.jpg");
+        Movie m4 = new Movie("Whiplash", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/whiplash.jpg");
+        Movie m5 = new Movie("La La Land", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/lalaland.jpg");
 
         Series s1 = new Series("Wandinha", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/wandinha.jpg", 1, 12);
-        Series s2 = new Series("Breaking Bad", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/wandinha.jpg", 1, 12);
-        Series s3 = new Series("Better Call Saul", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/wandinha.jpg", 1, 12);
-        Series s4 = new Series("Peaky Blinders", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/wandinha.jpg", 1, 12);
-        Series s5 = new Series("Atlanta", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/wandinha.jpg", 1, 12);
+        Series s2 = new Series("Breaking Bad", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/breakingbad.jpg", 1, 12);
+        Series s3 = new Series("Better Call Saul", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/bettercallsaul.jpg", 1, 12);
+        Series s4 = new Series("Peaky Blinders", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/peakyblinders.jpg", 1, 12);
+        Series s5 = new Series("Atlanta", List.of(a1, a2), d1, "Serie sobre tiktokers mágicas", "../assets/atlanta.jpg", 1, 12);
 
         HibernateController.registerActor(a1);
         HibernateController.registerActor(a2);

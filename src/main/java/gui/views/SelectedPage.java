@@ -28,9 +28,12 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class SelectedPage extends BorderPane {
-  Media media = HibernateController.searchMovie("Dune");
+  Media media;
 
   public SelectedPage(Media media) {
+    this.media = media;
+
+    
     HBox navBar = createNavBar();
     VBox mainContent = createMainContent();
     this.setTop(navBar);

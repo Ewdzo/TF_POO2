@@ -17,6 +17,8 @@ public class Person {
     Date birthDate;
     String photo;
 
+    public Person(){};
+
     public Person(String CPF, String name, Date birthDate, String photo){
         this.CPF = CPF;
         this.name = name;
@@ -39,4 +41,11 @@ public class Person {
     public String getPhoto() {
         return this.photo;
     }
+
+    public boolean equals(Object o){
+        Person aux = (Person) o;
+        if(this.name == aux.name) return true;
+        return false;
+    }
+    
 }

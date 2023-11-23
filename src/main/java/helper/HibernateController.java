@@ -119,6 +119,7 @@ public class HibernateController {
 
             return actor;
         } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }finally {
             em.close();
@@ -222,8 +223,7 @@ public class HibernateController {
             em.getTransaction().begin();
             
             User user = em.find(User.class, email);
-            
-            if(password == user.password) return true;
+            if(password.equals(user.password)) return true;
             return false;
 
         } catch (Exception e) {

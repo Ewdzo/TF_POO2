@@ -8,6 +8,8 @@ import javax.persistence.Entity;
 public class Series extends Media {
     public int seasons;
     public int episodes;
+        
+    public Series(){};
 
     public Series(String title, List<Actor> cast, Director director, String description, String photo, int seasons, int episodes) {
         super(title, cast, director, description, photo);

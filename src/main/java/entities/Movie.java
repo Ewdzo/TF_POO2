@@ -9,4 +9,6 @@ public class Movie extends Media {
     public Movie(String title, List<Actor> cast, Director director, String description, String photo) {
         super(title, cast, director, description, photo);
     };
+     
+    public Movie(){};
 }

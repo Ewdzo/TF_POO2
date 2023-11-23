@@ -1,7 +1,11 @@
 package gui.views;
+import entities.User;
+import helper.HibernateController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -23,6 +27,8 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class RegistroPage extends BorderPane {
+  TextField usuario;
+  PasswordField senha;
 
   public RegistroPage() {
 
@@ -91,12 +97,12 @@ public class RegistroPage extends BorderPane {
     loginLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 40));
     loginLabel.setStyle("-fx-text-fill: #FFFFFF;");
 
-    TextField usuario = new TextField();
+    usuario = new TextField();
     usuario.setPromptText("E-mail");
     usuario.setMinHeight(40); // Altura mínima do campo de texto
     usuario.setMaxWidth(300); // Largura máxima do campo de texto
 
-    PasswordField senha = new PasswordField();
+    senha = new PasswordField();
     senha.setPromptText("Senha");
     senha.setMinHeight(40);
     senha.setMaxWidth(300); // Largura máxima do campo de senha
@@ -105,7 +111,7 @@ public class RegistroPage extends BorderPane {
     loginButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
     loginButton.setMaxHeight(40); // Altura máxima do botão
     loginButton.setMaxWidth(300); // Largura máxima do botão
-    loginButton.setOnAction(e -> switchToLoginPage(loginButton));
+    loginButton.setOnAction(e -> register(loginButton));
 
     // Adicionar elementos ao VBox
     mainContent.getChildren().addAll(loginLabel, usuario, senha, loginButton);
@@ -118,5 +124,15 @@ public class RegistroPage extends BorderPane {
     LoginPage loginPage = new LoginPage();
     Scene loginScene = new Scene(loginPage, stage.getWidth(), stage.getHeight());
     stage.setScene(loginScene);
+  }
+
+  private void register(Button button) {
+    User user = new User(usuario.getText(), senha.getText(), "user", "path");
+    HibernateController.registerUser(user);
+
+      Alert alert = new Alert(AlertType.INFORMATION);
+      alert.setTitle("Cadastro confirmado!");
+      alert.setContentText("Cadastro confirmado, o usuário " + user.email + " pode se conectar agora.");
+      alert.show();
   }
 }

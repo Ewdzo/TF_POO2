@@ -2,6 +2,7 @@ package gui.views;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -119,7 +120,7 @@ public class SelectedPage extends BorderPane {
     backButton.setOnMouseExited(e -> backIconView.setEffect(null));
 
     // Ação do botão Voltar
-    backButton.setOnAction(e -> handleBackAction());
+    backButton.setOnAction(e -> handleBackAction(backButton));
 
     // Imagem do filme
     Image capaFilme = new Image(getClass().getResourceAsStream("../assets/capaFilme1.jpeg"));
@@ -138,7 +139,7 @@ public class SelectedPage extends BorderPane {
     movieTitle.setTextFill(Color.WHITE);
 
     Label notaDescription = new Label("Nota: ");
-    notaDescription.setFont(new Font("Arial", 5));
+    notaDescription.setFont(new Font("Arial", 15));
     notaDescription.setWrapText(true);
     notaDescription.setTextFill(Color.WHITE);
     notaDescription.setMaxWidth(500);
@@ -163,7 +164,8 @@ public class SelectedPage extends BorderPane {
     diretorDescription.setTextFill(Color.WHITE);
     diretorDescription.setMaxWidth(500);
 
-    movieDetails.getChildren().addAll(movieTitle, notaDescription, ratingBox, castDescription, movieDescription, diretorDescription);
+    movieDetails.getChildren().addAll(movieTitle, notaDescription, ratingBox, diretorDescription, castDescription,
+        movieDescription);
 
     // HBox para agrupar a imagem e os detalhes do filme
     HBox movieContent = new HBox(movieImage, movieDetails);
@@ -177,19 +179,43 @@ public class SelectedPage extends BorderPane {
     return mainContent;
   }
 
+  private DropShadow createGlowEffect() {
+    DropShadow glow = new DropShadow();
+    glow.setColor(Color.WHITE);
+    glow.setRadius(10);
+    glow.setSpread(0.5);
+    return glow;
+  }
+
   private HBox createRatingBox() {
     HBox ratingBox = new HBox();
     ratingBox.setAlignment(Pos.CENTER);
     ratingBox.setSpacing(10);
+    DropShadow glowEffect = createGlowEffect();
 
-    for (int i = 1; i <= 5; i++) {
+    for (int i = 0; i < 5; i++) {
       Image star = new Image(getClass().getResourceAsStream("../assets/iconStar.png"));
       ImageView starView = new ImageView(star);
       starView.setFitHeight(30);
       starView.setFitWidth(30);
       starView.setPreserveRatio(true);
       int finalI = i;
-      starView.setOnMouseClicked(e -> handleRating(finalI));
+
+      // Adiciona o efeito de brilho ao passar o mouse
+      starView.setOnMouseEntered(e -> {
+        for (int j = 0; j <= finalI; j++) {
+          ((ImageView) ratingBox.getChildren().get(j)).setEffect(glowEffect);
+        }
+      });
+
+      // Remove o efeito de brilho ao sair o mouse
+      starView.setOnMouseExited(e -> {
+        for (Node node : ratingBox.getChildren()) {
+          ((ImageView) node).setEffect(null);
+        }
+      });
+
+      starView.setOnMouseClicked(e -> handleRating(finalI + 1));
       ratingBox.getChildren().add(starView);
     }
 
@@ -201,8 +227,11 @@ public class SelectedPage extends BorderPane {
     // Aqui você pode adicionar a lógica para lidar com a avaliação do filme
   }
 
-  private void handleBackAction() {
-    // Aqui você pode adicionar a lógica para voltar para a tela anterior
+  private void handleBackAction(Button button) {
+    Stage stage = (Stage) button.getScene().getWindow();
+    HomePage HomePage = new HomePage();
+    Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
+    stage.setScene(homeScene);
   }
 
   private void switchToFilmPage(Button button) {

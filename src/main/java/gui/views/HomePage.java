@@ -127,14 +127,17 @@ public class HomePage extends BorderPane {
 
     HBox movieList = new HBox();
     movieList.setSpacing(10);
-    
+
     for (Media media : medias) {
+      // Botão para cada filme
+      Button movieButton = new Button();
+      movieButton.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
+
       VBox movieBox = new VBox();
       movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
       movieBox.setAlignment(Pos.CENTER);
-      movieBox.setStyle("-fx-border-color: #FFFFFF; -fx-border-width: 1; -fx-padding: 10;");
 
-      // Imagem do filme (substitua com o caminho correto da imagem)
+      // Imagem do filme
       Image movieImage = new Image(getClass().getResourceAsStream(media.getPhoto()));
       ImageView imageView = new ImageView(movieImage);
       imageView.setFitHeight(100); // Ajuste conforme necessário
@@ -146,7 +149,12 @@ public class HomePage extends BorderPane {
       movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
 
       movieBox.getChildren().addAll(imageView, movieTitle);
-      movieList.getChildren().add(movieBox);
+      movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
+
+      // Adiciona ação ao botão
+      movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
+
+      movieList.getChildren().add(movieButton);
     }
 
     categoryBox.getChildren().addAll(categoryLabel, movieList);

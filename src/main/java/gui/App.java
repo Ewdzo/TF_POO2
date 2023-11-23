@@ -89,7 +89,6 @@ public class App extends Application{
 		loginButton.setOnMouseExited(e -> loginButton.setStyle(buttonStyle));
 		loginButton.setOnAction(e -> switchToLoginPage(loginButton));
 
-		// Espaço flexível entre os botões
 		Region spacer = new Region();
 		HBox.setHgrow(spacer, Priority.ALWAYS);
 

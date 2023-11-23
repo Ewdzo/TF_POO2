@@ -3,6 +3,7 @@ package entities;
 import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
@@ -17,7 +18,7 @@ public class Media {
     @Id
     String title;
     
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
         name = "ActorMedia",
 		joinColumns = @JoinColumn(name = "media"),
@@ -52,8 +53,13 @@ public class Media {
         return this.title;
     }
 
-    public List<Actor> getCast() {
-        return this.cast;
+    public String getCast() {
+        String castString = "";
+
+        for (Actor actor : cast) {
+            castString += actor.getName() + "  ";
+        }
+        return castString;
     }
 
     public double getGrade() {

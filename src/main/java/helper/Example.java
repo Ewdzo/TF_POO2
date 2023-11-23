@@ -11,10 +11,11 @@ import entities.Series;
 
 public class Example {
     public static void populate() {
-        Actor a1 = new Actor("000.000.000-01", "Ryan Gosling", new GregorianCalendar(2001, 11, 12).getTime(), "path");
-        Actor a2 = new Actor("000.000.000-02", "Anne Hathaway", new GregorianCalendar(2001, 11, 12).getTime(), "path");
+        Actor a1 = new Actor("000.000.000-01", "Ryan Gosling", new GregorianCalendar(1986, 11, 12).getTime(), "path");
+        Actor a2 = new Actor("000.000.000-02", "Anne Hathaway", new GregorianCalendar(1985, 11, 12).getTime(), "path");
+        Actor a3 = new Actor("000.000.000-03", "", new GregorianCalendar(2001, 11, 12).getTime(), "path");
         
-        Director d1 = new Director("000.000.000-03", "Denis Villenueve", new GregorianCalendar(2001, 11, 12).getTime(), "path");
+        Director d1 = new Director("000.000.000-04", "Denis Villenueve", new GregorianCalendar(2001, 11, 12).getTime(), "path");
         
         Movie m1 = new Movie("Dune", List.of(a1, a2), d1, "Filme sobre areia e minhoca", "../assets/dune.jpeg");
         Movie m2 = new Movie("The Flash", List.of(a1, a2), d1, "Filme sobre areia e minhoca, so que o 3", "../assets/dune.jpeg");
@@ -30,6 +31,7 @@ public class Example {
 
         HibernateController.registerActor(a1);
         HibernateController.registerActor(a2);
+        HibernateController.registerActor(a3);
 
         HibernateController.registerDirector(d1);
 

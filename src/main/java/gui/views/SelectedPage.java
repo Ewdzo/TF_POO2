@@ -1,5 +1,9 @@
 package gui.views;
 
+import org.hibernate.Hibernate;
+
+import entities.Media;
+import helper.HibernateController;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -24,16 +28,11 @@ import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class SelectedPage extends BorderPane {
+  Media media = HibernateController.searchMovie("Dune");
 
-  public SelectedPage() {
-
-    // Barra de navegação
+  public SelectedPage(Media media) {
     HBox navBar = createNavBar();
-
-    // Conteúdo principal
     VBox mainContent = createMainContent();
-
-    // Configuração dos componentes no layout
     this.setTop(navBar);
     this.setCenter(mainContent);
   }
@@ -123,7 +122,7 @@ public class SelectedPage extends BorderPane {
     backButton.setOnAction(e -> handleBackAction(backButton));
 
     // Imagem do filme
-    Image capaFilme = new Image(getClass().getResourceAsStream("../assets/capaFilme1.jpeg"));
+    Image capaFilme = new Image(getClass().getResourceAsStream(media.getPhoto()));
     ImageView movieImage = new ImageView(capaFilme);
     movieImage.setFitHeight(300);
     movieImage.setFitWidth(200);
@@ -134,11 +133,11 @@ public class SelectedPage extends BorderPane {
     movieDetails.setAlignment(Pos.CENTER_LEFT);
     movieDetails.setSpacing(10);
 
-    Label movieTitle = new Label("Título do Filme");
+    Label movieTitle = new Label(media.getTitle());
     movieTitle.setFont(new Font("Arial", 30));
     movieTitle.setTextFill(Color.WHITE);
 
-    Label notaDescription = new Label("Nota: ");
+    Label notaDescription = new Label("Nota: " + media.getGrade());
     notaDescription.setFont(new Font("Arial", 15));
     notaDescription.setWrapText(true);
     notaDescription.setTextFill(Color.WHITE);
@@ -146,19 +145,19 @@ public class SelectedPage extends BorderPane {
 
     HBox ratingBox = createRatingBox();
 
-    Label castDescription = new Label("Elenco: ");
+    Label castDescription = new Label("Elenco: " + media.getCast());
     castDescription.setFont(new Font("Arial", 15));
     castDescription.setWrapText(true);
     castDescription.setTextFill(Color.WHITE);
     castDescription.setMaxWidth(500);
 
-    Label movieDescription = new Label("Spoiler do filme: ");
+    Label movieDescription = new Label("Spoiler do filme: " + media.getDescription());
     movieDescription.setFont(new Font("Arial", 15));
     movieDescription.setWrapText(true);
     movieDescription.setTextFill(Color.WHITE);
     movieDescription.setMaxWidth(500);
 
-    Label diretorDescription = new Label("Diretor: ");
+    Label diretorDescription = new Label("Diretor: " + media.getDirector().getName());
     diretorDescription.setFont(new Font("Arial", 15));
     diretorDescription.setWrapText(true);
     diretorDescription.setTextFill(Color.WHITE);

@@ -1,4 +1,5 @@
 package gui.views;
+
 import entities.User;
 import helper.HibernateController;
 import javafx.geometry.Insets;
@@ -46,19 +47,16 @@ public class RegistroPage extends BorderPane {
   private HBox createNavBar() {
     HBox navBar = new HBox();
     navBar.setPadding(new Insets(15, 12, 15, 12));
-    navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
+    navBar.setStyle("-fx-background-color: #E50914;");
 
-    // Botão Home com logo da Netflix
-    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
+    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png"));
     ImageView logoView = new ImageView(netflixLogo);
-    logoView.setFitHeight(30); // Ajuste conforme necessário
+    logoView.setFitHeight(30);
     logoView.setPreserveRatio(true);
-    Button homeButton = new Button("", logoView); // Botão com a logo
+    Button homeButton = new Button("", logoView);
 
-    // Botão Login
     Button loginButton = new Button("Login");
 
-    // Estilização dos botões
     String buttonStyle = "-fx-font-size: 14px; -fx-background-color: #000000; -fx-text-fill: #FFFFFF;";
     String buttonHoverStyle = "-fx-font-size: 14px; -fx-background-color: #555555; -fx-text-fill: #FFFFFF;";
 
@@ -71,7 +69,6 @@ public class RegistroPage extends BorderPane {
     loginButton.setOnMouseExited(e -> loginButton.setStyle(buttonStyle));
     loginButton.setOnAction(e -> switchToLoginPage(loginButton));
 
-    // Espaço flexível entre os botões
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
@@ -82,38 +79,35 @@ public class RegistroPage extends BorderPane {
   private VBox createMainContent() {
     VBox mainContent = new VBox();
     mainContent.setAlignment(Pos.CENTER_RIGHT);
-    mainContent.setPadding(new Insets(50, 50, 0, 50)); // Ajuste os espaços conforme necessário
-    mainContent.setSpacing(50); // Espaçamento de 20px entre os elementos
+    mainContent.setPadding(new Insets(50, 50, 0, 50));
+    mainContent.setSpacing(50);
 
-    // Carregar a imagem de fundo
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundRegistro.png")); // Substitua com o caminho correto da imagem
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundRegistro.png"));
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
     BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
     mainContent.setBackground(new Background(bgImage));
 
-    // Elementos de login
     Label loginLabel = new Label("Registrar-se");
     loginLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 40));
     loginLabel.setStyle("-fx-text-fill: #FFFFFF;");
 
     usuario = new TextField();
     usuario.setPromptText("E-mail");
-    usuario.setMinHeight(40); // Altura mínima do campo de texto
-    usuario.setMaxWidth(300); // Largura máxima do campo de texto
+    usuario.setMinHeight(40);
+    usuario.setMaxWidth(300);
 
     senha = new PasswordField();
     senha.setPromptText("Senha");
     senha.setMinHeight(40);
-    senha.setMaxWidth(300); // Largura máxima do campo de senha
+    senha.setMaxWidth(300);
 
     Button loginButton = new Button("Registrar");
     loginButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
-    loginButton.setMaxHeight(40); // Altura máxima do botão
-    loginButton.setMaxWidth(300); // Largura máxima do botão
+    loginButton.setMaxHeight(40);
+    loginButton.setMaxWidth(300);
     loginButton.setOnAction(e -> register(loginButton));
 
-    // Adicionar elementos ao VBox
     mainContent.getChildren().addAll(loginLabel, usuario, senha, loginButton);
 
     return mainContent;
@@ -130,9 +124,9 @@ public class RegistroPage extends BorderPane {
     User user = new User(usuario.getText(), senha.getText(), "user", "path");
     HibernateController.registerUser(user);
 
-      Alert alert = new Alert(AlertType.INFORMATION);
-      alert.setTitle("Cadastro confirmado!");
-      alert.setContentText("Cadastro confirmado, o usuário " + user.email + " pode se conectar agora.");
-      alert.show();
+    Alert alert = new Alert(AlertType.INFORMATION);
+    alert.setTitle("Cadastro confirmado!");
+    alert.setContentText("Cadastro confirmado, o usuário " + user.email + " pode se conectar agora.");
+    alert.show();
   }
 }

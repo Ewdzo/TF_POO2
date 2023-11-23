@@ -32,10 +32,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class App extends Application{
+public class App extends Application {
 
 	@Override
-  	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Sistema de Compartilhamento de Filmes e Séries");
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/iconNetflix.png")));
 
@@ -58,24 +58,21 @@ public class App extends Application{
 		primaryStage.setMinWidth(1000);
 		primaryStage.setMinHeight(700);
 		primaryStage.show();
-  	}
+	}
 
 	private HBox createNavBar() {
 		HBox navBar = new HBox();
 		navBar.setPadding(new Insets(15, 12, 15, 12));
-		navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
+		navBar.setStyle("-fx-background-color: #E50914;");
 
-		// Botão Home com logo da Netflix
-		Image netflixLogo = new Image(getClass().getResourceAsStream("assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
+		Image netflixLogo = new Image(getClass().getResourceAsStream("assets/iconNetflix.png"));
 		ImageView logoView = new ImageView(netflixLogo);
-		logoView.setFitHeight(30); // Ajuste conforme necessário
+		logoView.setFitHeight(30);
 		logoView.setPreserveRatio(true);
-		Button homeButton = new Button("", logoView); // Botão com a logo
+		Button homeButton = new Button("", logoView);
 
-		// Botão Login
 		Button loginButton = new Button("Login");
 
-		// Estilização dos botões
 		String buttonStyle = "-fx-font-size: 14px; -fx-background-color: #000000; -fx-text-fill: #FFFFFF;";
 		String buttonHoverStyle = "-fx-font-size: 14px; -fx-background-color: #555555; -fx-text-fill: #FFFFFF;";
 
@@ -102,29 +99,25 @@ public class App extends Application{
 		mainContent.setPadding(new Insets(15, 12, 15, 12));
 		mainContent.setAlignment(Pos.CENTER);
 
-		// Carregar a imagem de fundo
-		Image backgroundImage = new Image(getClass().getResourceAsStream("assets/Netflix-Background.jpg")); // Substitua com o caminho correto da imagem
+		Image backgroundImage = new Image(getClass().getResourceAsStream("assets/Netflix-Background.jpg"));
 		BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
-		BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+		BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
 
-		// Definir a imagem de fundo no VBox
 		mainContent.setBackground(new Background(bgImage));
 
-		// Texto centralizado
 		Label titleLabel = new Label("Filmes, Séries e Muito Mais, Sem Limites");
-		titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 40)); // Ajuste o tamanho e a fonte conforme necessário
-		titleLabel.setStyle("-fx-text-fill: #FFFFFF;"); // Cor do texto
+		titleLabel.setFont(Font.font("Arial", FontWeight.BOLD, 40));
+		titleLabel.setStyle("-fx-text-fill: #FFFFFF;");
 
-		// Botão "Vamos Lá"
 		Button startButton = new Button("Vamos Lá >");
 		startButton.setOnAction(e -> switchToLoginPage(startButton));
 		startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
 		startButton.setOnMouseEntered(
-			e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #B20710; -fx-text-fill: #FFFFFF;"));
+				e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #B20710; -fx-text-fill: #FFFFFF;"));
 		startButton.setOnMouseExited(
-			e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;"));
+				e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;"));
 
-		// Adicionar elementos ao VBox
 		mainContent.getChildren().addAll(titleLabel, startButton);
 
 		return mainContent;
@@ -137,15 +130,15 @@ public class App extends Application{
 		stage.setScene(homeScene);
 	};
 
-  	private void switchToLoginPage(Button button) {
+	private void switchToLoginPage(Button button) {
 		Stage stage = (Stage) button.getScene().getWindow();
 		LoginPage loginPage = new LoginPage();
 		Scene loginScene = new Scene(loginPage, stage.getWidth(), stage.getHeight());
 		stage.setScene(loginScene);
-  	};
+	};
 
-	public static void main(String[] args) {	
-		//Example.populate();
+	public static void main(String[] args) {
+		// Example.populate();
 		launch(args);
 	};
 

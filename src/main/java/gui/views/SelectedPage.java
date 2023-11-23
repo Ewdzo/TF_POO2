@@ -33,7 +33,6 @@ public class SelectedPage extends BorderPane {
   public SelectedPage(Media media) {
     this.media = media;
 
-    
     HBox navBar = createNavBar();
     VBox mainContent = createMainContent();
     this.setTop(navBar);
@@ -43,21 +42,18 @@ public class SelectedPage extends BorderPane {
   private HBox createNavBar() {
     HBox navBar = new HBox();
     navBar.setPadding(new Insets(15, 12, 15, 12));
-    navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
+    navBar.setStyle("-fx-background-color: #E50914;");
 
-    // Botão Home com logo da Netflix
     Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png"));
     ImageView logoView = new ImageView(netflixLogo);
-    logoView.setFitHeight(30); // Ajuste conforme necessário
+    logoView.setFitHeight(30);
     logoView.setPreserveRatio(true);
-    Button homeButton = new Button("", logoView); // Botão com a logo
+    Button homeButton = new Button("", logoView);
 
-    // Botão Login
     Button filmButton = new Button("Filmes/Series");
 
     Button categoryButton = new Button("Categorias");
 
-    // Estilização dos botões
     String buttonStyle = "-fx-font-size: 14px; -fx-background-color: #000000; -fx-text-fill: #FFFFFF;";
     String buttonHoverStyle = "-fx-font-size: 14px; -fx-background-color: #555555; -fx-text-fill: #FFFFFF;";
 
@@ -75,11 +71,9 @@ public class SelectedPage extends BorderPane {
     categoryButton.setOnMouseExited(e -> categoryButton.setStyle(buttonStyle));
     categoryButton.setOnAction(e -> switchToCategoryPage(categoryButton));
 
-    // Espaço flexível entre os botões
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
-    // Espaçador após o botão Filmes/Séries
     Region spacerRightFilmButton = new Region();
     spacerRightFilmButton.setMinWidth(10);
 
@@ -93,14 +87,12 @@ public class SelectedPage extends BorderPane {
     mainContent.setSpacing(20);
     mainContent.setPadding(new Insets(10));
 
-    // Carregar a imagem de fundo
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg"));
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundSelected.jpg"));
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
     BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
     mainContent.setBackground(new Background(bgImage));
 
-    // Botão Voltar
     Button backButton = new Button();
     Image backIcon = new Image(getClass().getResourceAsStream("../assets/iconBack.png"));
     ImageView backIconView = new ImageView(backIcon);
@@ -108,11 +100,9 @@ public class SelectedPage extends BorderPane {
     backIconView.setPreserveRatio(true);
     backButton.setGraphic(backIconView);
 
-    // Estilização opcional
     backButton.setStyle("-fx-background-color: transparent;");
     backButton.setPadding(new Insets(5, 5, 5, 5));
 
-    // Efeito de hover com DropShadow
     DropShadow dropShadow = new DropShadow();
     dropShadow.setColor(Color.WHITE);
     dropShadow.setRadius(10);
@@ -121,17 +111,14 @@ public class SelectedPage extends BorderPane {
     backButton.setOnMouseEntered(e -> backIconView.setEffect(dropShadow));
     backButton.setOnMouseExited(e -> backIconView.setEffect(null));
 
-    // Ação do botão Voltar
     backButton.setOnAction(e -> handleBackAction(backButton));
 
-    // Imagem do filme
     Image capaFilme = new Image(getClass().getResourceAsStream(media.getPhoto()));
     ImageView movieImage = new ImageView(capaFilme);
     movieImage.setFitHeight(300);
     movieImage.setFitWidth(200);
     movieImage.setPreserveRatio(true);
 
-    // Título do filme e descrições
     VBox movieDetails = new VBox();
     movieDetails.setAlignment(Pos.CENTER_LEFT);
     movieDetails.setSpacing(10);
@@ -169,13 +156,11 @@ public class SelectedPage extends BorderPane {
     movieDetails.getChildren().addAll(movieTitle, notaDescription, ratingBox, diretorDescription, castDescription,
         movieDescription);
 
-    // HBox para agrupar a imagem e os detalhes do filme
     HBox movieContent = new HBox(movieImage, movieDetails);
-    movieContent.setAlignment(Pos.CENTER_LEFT);
+    movieContent.setAlignment(Pos.CENTER);
     movieContent.setSpacing(80);
-    movieContent.setPadding(new Insets(50, 0, 0, 200));
+    movieContent.setPadding(new Insets(50, 0, 0, 0));
 
-    // Adicionar todos os elementos ao VBox principal
     mainContent.getChildren().addAll(backButton, movieContent);
 
     return mainContent;
@@ -191,7 +176,7 @@ public class SelectedPage extends BorderPane {
 
   private HBox createRatingBox() {
     HBox ratingBox = new HBox();
-    ratingBox.setAlignment(Pos.CENTER);
+    ratingBox.setAlignment(Pos.CENTER_LEFT);
     ratingBox.setSpacing(10);
     DropShadow glowEffect = createGlowEffect();
 
@@ -203,44 +188,53 @@ public class SelectedPage extends BorderPane {
       starView.setPreserveRatio(true);
       int finalI = i;
 
-      // Adiciona o efeito de brilho ao passar o mouse
       starView.setOnMouseEntered(e -> {
         for (int j = 0; j <= finalI; j++) {
           ((ImageView) ratingBox.getChildren().get(j)).setEffect(glowEffect);
         }
       });
 
-      // Remove o efeito de brilho ao sair o mouse
       starView.setOnMouseExited(e -> {
         for (Node node : ratingBox.getChildren()) {
           ((ImageView) node).setEffect(null);
         }
       });
 
-      starView.setOnMouseClicked(e -> handleRating(starView, finalI + 1));
+      starView.setOnMouseClicked(e -> handleRating(ratingBox, starView, finalI + 1));
+
       ratingBox.getChildren().add(starView);
     }
 
     return ratingBox;
   }
 
-  private void handleRating(ImageView view, int rating) {
+  private void handleRating(HBox ratingBox, ImageView view, int rating) {
     HibernateController.reviewMovie(rating * 2, getAccessibleHelp());
-    view.setImage(new Image(getClass().getResourceAsStream("../assets/iconStarSelected.png")));
+
+    for (int i = 0; i < rating; i++) {
+      ImageView starView = (ImageView) ratingBox.getChildren().get(i);
+      starView.setImage(new Image(getClass().getResourceAsStream("../assets/iconStarSelected.png")));
+    }
+
+    for (int i = rating; i < 5; i++) {
+      ImageView starView = (ImageView) ratingBox.getChildren().get(i);
+      starView.setImage(new Image(getClass().getResourceAsStream("../assets/iconStarLivre.png")));
+    }
   }
 
+
   private void handleBackAction(Button button) {
-		Stage stage = (Stage) button.getScene().getWindow();
-		HomePage HomePage = new HomePage();
-		Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
-		stage.setScene(homeScene);
+    Stage stage = (Stage) button.getScene().getWindow();
+    HomePage HomePage = new HomePage();
+    Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
+    stage.setScene(homeScene);
   }
 
   private void switchToFilmPage(Button button) {
-		Stage stage = (Stage) button.getScene().getWindow();
-		HomePage HomePage = new HomePage();
-		Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
-		stage.setScene(homeScene);
+    Stage stage = (Stage) button.getScene().getWindow();
+    HomePage HomePage = new HomePage();
+    Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
+    stage.setScene(homeScene);
   }
 
   private void switchToCategoryPage(Button button) {

@@ -1,4 +1,5 @@
 package gui.views;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,8 +30,10 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 public class CategoriaPage extends BorderPane {
-  ArrayList<Movie> movies = HibernateController.getMovies(List.of("The Flash", "Spiderverse", "Dune", "Whiplash", "La La Land"));
-  ArrayList<Series> seriesA = HibernateController.getSeries(List.of("Wandinha", "Breaking Bad", "Better Call Saul", "Peaky Blinders", "Atlanta"));
+  ArrayList<Movie> movies = HibernateController
+      .getMovies(List.of("The Flash", "Spiderverse", "Dune", "Whiplash", "La La Land"));
+  ArrayList<Series> seriesA = HibernateController
+      .getSeries(List.of("Wandinha", "Breaking Bad", "Better Call Saul", "Peaky Blinders", "Atlanta"));
 
   public CategoriaPage() {
 
@@ -48,21 +51,18 @@ public class CategoriaPage extends BorderPane {
   private HBox createNavBar() {
     HBox navBar = new HBox();
     navBar.setPadding(new Insets(15, 12, 15, 12));
-    navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
+    navBar.setStyle("-fx-background-color: #E50914;");
 
-    // Botão Home com logo da Netflix
-    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
+    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png"));
     ImageView logoView = new ImageView(netflixLogo);
-    logoView.setFitHeight(30); // Ajuste conforme necessário
+    logoView.setFitHeight(30);
     logoView.setPreserveRatio(true);
-    Button homeButton = new Button("", logoView); // Botão com a logo
+    Button homeButton = new Button("", logoView);
 
-    // Botão Login
     Button filmButton = new Button("Filmes/Series");
 
     Button categoryButton = new Button("Categorias");
 
-    // Estilização dos botões
     String buttonStyle = "-fx-font-size: 14px; -fx-background-color: #000000; -fx-text-fill: #FFFFFF;";
     String buttonHoverStyle = "-fx-font-size: 14px; -fx-background-color: #555555; -fx-text-fill: #FFFFFF;";
 
@@ -80,11 +80,9 @@ public class CategoriaPage extends BorderPane {
     categoryButton.setOnMouseExited(e -> categoryButton.setStyle(buttonStyle));
     categoryButton.setOnAction(e -> switchToCategoryPage(categoryButton));
 
-    // Espaço flexível entre os botões
     Region spacer = new Region();
     HBox.setHgrow(spacer, Priority.ALWAYS);
 
-    // Espaçador após o botão Filmes/Séries
     Region spacerRightFilmButton = new Region();
     spacerRightFilmButton.setMinWidth(10);
 
@@ -95,29 +93,26 @@ public class CategoriaPage extends BorderPane {
   private ScrollPane createMainContent() {
     VBox contentBox = new VBox();
     contentBox.setAlignment(Pos.CENTER_LEFT);
-    contentBox.setPadding(new Insets(50, 0, 0, 50)); // Ajuste os espaços conforme necessário
-    contentBox.setSpacing(50); // Espaçamento entre os elementos
+    contentBox.setPadding(new Insets(50, 0, 0, 50));
+    contentBox.setSpacing(50);
 
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg"));
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.png"));
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
-    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
+        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
     contentBox.setBackground(new Background(bgImage));
 
     VBox filmes = createCategory("Filmes", movies);
     VBox series = createCategory("Series", seriesA);
-  
 
-    // Adicionar categorias ao VBox
     contentBox.getChildren().addAll(filmes, series);
 
-    // Criação do ScrollPane
-    ScrollPane scrollPane = new ScrollPane(); // Altere o nome da variável para evitar conflito
+    ScrollPane scrollPane = new ScrollPane();
     scrollPane.setContent(contentBox);
-    scrollPane.setFitToWidth(true); // Ajusta a largura do conteúdo ao ScrollPane
-    scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Esconde a barra de rolagem horizontal
-    scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Mostra a barra de rolagem vertical conforme
-
-    // Estilização do ScrollPane
+    scrollPane.setFitToWidth(true);
+    scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER);
+    scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED);
+    contentBox.setPadding(new Insets(20, 0, 300, 0));
     scrollPane.setStyle("-fx-color: black; -fx-border-width: 2;");
     return scrollPane;
   }
@@ -134,27 +129,24 @@ public class CategoriaPage extends BorderPane {
     movieList.setSpacing(10);
 
     for (Media media : medias) {
-      // Botão para cada filme
       Button movieButton = new Button();
       movieButton.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
 
       VBox movieBox = new VBox();
-      movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
+      movieBox.setSpacing(5);
       movieBox.setAlignment(Pos.CENTER);
 
-      // Imagem do filme
       Image movieImage = new Image(getClass().getResourceAsStream(media.getPhoto()));
       ImageView imageView = new ImageView(movieImage);
-      imageView.setFitHeight(100); // Ajuste conforme necessário
+      imageView.setFitHeight(100);
       imageView.setFitWidth(100);
       imageView.setPreserveRatio(true);
 
-      // Título do filme
       Label movieTitle = new Label(media.getTitle());
       movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
 
       movieBox.getChildren().addAll(imageView, movieTitle);
-      movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
+      movieButton.setGraphic(movieBox);
 
       movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
 
@@ -166,10 +158,10 @@ public class CategoriaPage extends BorderPane {
   }
 
   private void switchToFilmPage(Button button) {
-		Stage stage = (Stage) button.getScene().getWindow();
-		HomePage HomePage = new HomePage();
-		Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
-		stage.setScene(homeScene);
+    Stage stage = (Stage) button.getScene().getWindow();
+    HomePage HomePage = new HomePage();
+    Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
+    stage.setScene(homeScene);
   }
 
   private void switchToCategoryPage(Button button) {
@@ -178,7 +170,7 @@ public class CategoriaPage extends BorderPane {
     Scene CategoryScene = new Scene(CategoriaPage, stage.getWidth(), stage.getHeight());
     stage.setScene(CategoryScene);
   }
-  
+
   private void switchToSelectedPage(Button button, Media media) {
     Stage stage = (Stage) button.getScene().getWindow();
     SelectedPage SelectedPage = new SelectedPage(media);

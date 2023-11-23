@@ -13,7 +13,6 @@ import java.util.ResourceBundle;
 
 import helper.HibernateController;
 public class APIConsumer implements Initializable {
-
     @FXML
     private Button loginButton;
     @FXML

@@ -23,7 +23,6 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class LoginPage extends BorderPane {
-
   public LoginPage() {
 
     // Barra de navegação

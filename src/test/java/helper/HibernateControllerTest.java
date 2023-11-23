@@ -12,6 +12,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -75,7 +76,7 @@ public class HibernateControllerTest {
         String title = "Inception";
         List<Actor> cast = new ArrayList<>();
         double grade = 9.2;
-        Director director = new Director("000.000.000-02", "Christopher Nolan", new Date(), "nolan_photo.jpg");
+        Director director = HibernateController.searchDirector("000.000.000-02");
         String description = "Dom Cobb é um ladrão com a rara habilidade de roubar segredos do inconsciente, obtidos durante o estado de sono. Impedido de retornar para sua família, ele recebe a oportunidade de se redimir ao realizar uma tarefa aparentemente impossível: plantar uma ideia na mente do herdeiro de um império.";
         String photo = "inception_poster.jpg";
         Movie newMovie = new Movie(title, cast, director, description, photo);
@@ -188,13 +189,13 @@ public class HibernateControllerTest {
         String username = "User Name";
         String password = "password123";
         String photo = "user_photo.jpg";
-        User user = new User(email, username, password, photo);
+        User newUser = new User(email, username, password, photo);
 
-        boolean result = HibernateController.registerUser(user);
+        boolean result = HibernateController.registerUser(newUser);
 
         assertTrue(result);
 
-        User user1 = HibernateController.searchUser(email);
+        User user = HibernateController.searchUser(email);
         assertNotNull(user);
         assertEquals(email, user.getEmail());
         assertEquals(username, user.getUsername());
@@ -207,11 +208,31 @@ public class HibernateControllerTest {
         String email = "user@example.com";
         String correctPassword = "password123";
         String incorrectPassword = "wrongpassword";
-        User user = new User(email, correctPassword, "User Name", "user_photo.jpg");
+        User user = HibernateController.searchUser(email);
 
         HibernateController.registerUser(user);
 
         assertTrue(HibernateController.login(email, correctPassword));
         assertFalse(HibernateController.login(email, incorrectPassword));
+    }
+
+    @AfterAll
+    public void tearDown() {
+        EntityManager em = HibernateManager.getEntityManager();
+        
+        try {
+            em.getTransaction().begin();
+
+            HibernateManager.getEntityManager().remove(     HibernateController.searchActor("000.000.000-01")      );
+            HibernateManager.getEntityManager().remove(     HibernateController.searchDirector("000.000.000-02")   );
+            HibernateManager.getEntityManager().remove(     HibernateController.searchMovie("Inception")         );
+            HibernateManager.getEntityManager().remove(     HibernateController.searchActor("Better Call Saul")    );
+            HibernateManager.getEntityManager().remove(     HibernateController.searchUser("user@example.com")   );
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
     }
 }

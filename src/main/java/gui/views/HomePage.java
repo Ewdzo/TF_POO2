@@ -63,7 +63,7 @@ public class HomePage extends BorderPane {
     homeButton.setStyle(buttonStyle);
     homeButton.setOnMouseEntered(e -> homeButton.setStyle(buttonHoverStyle));
     homeButton.setOnMouseExited(e -> homeButton.setStyle(buttonStyle));
-    homeButton.setOnAction(e -> switchToSelectedPage(homeButton));
+    homeButton.setOnAction(e -> switchToSelectedPage(homeButton, movies.get(0)));
 
     filmButton.setStyle(buttonStyle);
     filmButton.setOnMouseEntered(e -> filmButton.setStyle(buttonHoverStyle));
@@ -210,9 +210,9 @@ public class HomePage extends BorderPane {
     return categoryBox;
   }
 
-  private void switchToSelectedPage(Button button) {
+  private void switchToSelectedPage(Button button, Media media) {
     Stage stage = (Stage) button.getScene().getWindow();
-    SelectedPage SelectedPage = new SelectedPage(movies.get(0));
+    SelectedPage SelectedPage = new SelectedPage(media);
     Scene SelectedScene = new Scene(SelectedPage, stage.getWidth(), stage.getHeight());
     stage.setScene(SelectedScene);
   }

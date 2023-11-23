@@ -1,17 +1,12 @@
 package gui.views;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ScrollPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundImage;
-import javafx.scene.layout.BackgroundPosition;
-import javafx.scene.layout.BackgroundRepeat;
-import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -27,7 +22,7 @@ public class SelectedPage extends BorderPane {
     HBox navBar = createNavBar();
 
     // Conteúdo principal
-    ScrollPane mainContent = createMainContent();
+    VBox mainContent = createMainContent();
 
     // Configuração dos componentes no layout
     this.setTop(navBar);
@@ -40,7 +35,7 @@ public class SelectedPage extends BorderPane {
     navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
 
     // Botão Home com logo da Netflix
-    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
+    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png"));
     ImageView logoView = new ImageView(netflixLogo);
     logoView.setFitHeight(30); // Ajuste conforme necessário
     logoView.setPreserveRatio(true);
@@ -81,58 +76,50 @@ public class SelectedPage extends BorderPane {
     return navBar;
   }
 
-  private ScrollPane createMainContent() {
-    VBox contentBox = new VBox();
-    contentBox.setAlignment(Pos.CENTER_LEFT);
-    contentBox.setPadding(new Insets(50, 0, 0, 50)); // Ajuste os espaços conforme necessário
-    contentBox.setSpacing(50); // Espaçamento entre os elementos
+  private VBox createMainContent() {
+    VBox mainContent = new VBox();
+    mainContent.setAlignment(Pos.CENTER);
+    mainContent.setSpacing(20);
+    mainContent.setPadding(new Insets(10));
 
-    // Carregar a imagem de fundo
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg")); // Substitua com o caminho correto da imagem
-    BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
-    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
-        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
-    contentBox.setBackground(new Background(bgImage));
+    // Imagem do filme
+    ImageView movieImage = new ImageView(new Image("../assets/capaFilme1.jpeg")); // Substitua com o caminho correto da
+    movieImage.setFitHeight(300); // Ajuste conforme necessário
+    movieImage.setFitWidth(200);
+    movieImage.setPreserveRatio(true);
 
-    VBox filmesPopular = createCategory("Filmes - Popular", 5);
-    VBox seriesPopulares = createCategory("Séries - Popular", 10);
-    VBox filmesLancamentos = createCategory("Filmes - Ultimos Lançados", 10);
-    VBox seriesLancamentos = createCategory("Séries - Ultimos Lançados", 10);
+    // Descrição do filme
+    Label movieDescription = new Label("Descrição do filme...");
+    movieDescription.setWrapText(true);
 
-    // Adicionar categorias ao VBox
-    contentBox.getChildren().addAll(filmesPopular, seriesPopulares, filmesLancamentos, seriesLancamentos);
+    // Descrição do elenco
+    Label castDescription = new Label("Elenco: Nome dos atores...");
+    castDescription.setWrapText(true);
 
-    // Criação do ScrollPane
-    ScrollPane scrollPane = new ScrollPane(); // Altere o nome da variável para evitar conflito
-    scrollPane.setContent(contentBox);
-    scrollPane.setFitToWidth(true); // Ajusta a largura do conteúdo ao ScrollPane
-    scrollPane.setHbarPolicy(ScrollPane.ScrollBarPolicy.NEVER); // Esconde a barra de rolagem horizontal
-    scrollPane.setVbarPolicy(ScrollPane.ScrollBarPolicy.AS_NEEDED); // Mostra a barra de rolagem vertical conforme
+    // Sistema de avaliação
+    HBox ratingBox = new HBox();
+    ratingBox.setAlignment(Pos.CENTER);
+    ratingBox.setSpacing(10);
 
-    // Estilização do ScrollPane
-    scrollPane.setStyle("-fx-color: black; -fx-border-width: 2;");
-    return scrollPane;
-  }
-
-  private VBox createCategory(String categoryName, int numberOfMovies) {
-    VBox categoryBox = new VBox();
-    categoryBox.setPadding(new Insets(10));
-    categoryBox.setSpacing(10);
-
-    Label categoryLabel = new Label(categoryName);
-    categoryLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #FFFFFF;");
-
-    HBox movieList = new HBox();
-    movieList.setSpacing(10);
-
-    for (int i = 1; i <= numberOfMovies; i++) {
-      Button movieButton = new Button("Filme " + i);
-      movieButton.setStyle("-fx-background-color: #333333; -fx-text-fill: #FFFFFF;");
-      movieList.getChildren().add(movieButton);
+    for (int i = 1; i <= 5; i++) {
+      ImageView star = new ImageView(new Image("../assets/iconStar.png"));
+      star.setFitHeight(30);
+      star.setFitWidth(30);
+      star.setPreserveRatio(true);
+      int finalI = i;
+      star.setOnMouseClicked(e -> handleRating(finalI));
+      ratingBox.getChildren().add(star);
     }
 
-    categoryBox.getChildren().addAll(categoryLabel, movieList);
-    return categoryBox;
+    // Adicionar todos os elementos ao VBox
+    mainContent.getChildren().addAll(movieImage, movieDescription, castDescription, ratingBox);
+
+    return mainContent;
+  }
+
+  private void handleRating(int rating) {
+    System.out.println("Avaliação: " + rating + " estrelas");
+    // Aqui você pode adicionar a lógica para lidar com a avaliação do filme
   }
 
   private void switchToFilmPage(Button button) {

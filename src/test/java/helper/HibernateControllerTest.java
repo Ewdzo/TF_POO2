@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -26,11 +27,10 @@ public class HibernateControllerTest {
 
     @BeforeEach
     public void connectionTest() {
-        EntityManager em = new HibernateManager().em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
-            em.getTransaction().commit();
         } finally {
             em.close();
         }
@@ -40,7 +40,7 @@ public class HibernateControllerTest {
     public void testRegisterActor() {
         String cpf = "000.000.000-01";
         String name = "Ryan Gosling";
-        Date birthDate = new Date();
+        Date birthDate = new GregorianCalendar(1995, 11, 12).getTime();
         String photo = "path";
         Actor newActor = new Actor(cpf, name, birthDate, photo);
 
@@ -95,7 +95,7 @@ public class HibernateControllerTest {
     @Test
     public void testRegisterSeries() {
         String title = "Better Call Saul";
-        List<Actor> cast = new ArrayList<>();
+        List<Actor> cast = List.of(HibernateController.searchActor("000.000.000-01"));
         Director director = new Director("000.000.000-04", "Vince Gillian", new Date(), "bravovince.jpg");
         String description = "Jimmy McGill, também como conhecido como Saul Goodman, tenta ser um homem honesto e construir uma carreira de respeito. Mas há um lado seu que só quer aplicar golpes e se tornar um advogado picareta.";
         String photo = "saul3D.gif";

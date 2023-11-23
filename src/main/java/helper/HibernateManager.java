@@ -8,9 +8,9 @@ public class HibernateManager {
     static EntityManagerFactory emf;
     static EntityManager em;
 
-    public EntityManager getEntityManager() {
-        if(emf == null) emf = Persistence.createEntityManagerFactory("HibernatePOO2");
-        if(em == null) em = emf.createEntityManager();
+    public static EntityManager getEntityManager() {
+        emf = Persistence.createEntityManagerFactory("HibernatePOO2");
+        em = emf.createEntityManager();
         
         return em; 
     }

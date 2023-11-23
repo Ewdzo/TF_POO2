@@ -13,7 +13,7 @@ public class HibernateController {
 		
 	public static void registerActor(Actor newActor) {
 
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -28,7 +28,7 @@ public class HibernateController {
 
     public static void registerDirector(Director newDirector) {
 
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -43,7 +43,7 @@ public class HibernateController {
 
     public static void registerMovie(Movie newMovie) {
         
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -59,7 +59,7 @@ public class HibernateController {
 
     public static void registerSeries(Series newSeries) {
 
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -74,7 +74,7 @@ public class HibernateController {
     }
 
     public static boolean reviewSeries(double grade, String title) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -91,7 +91,7 @@ public class HibernateController {
     }
 
     public static boolean reviewMovie(double grade, String title) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -108,7 +108,7 @@ public class HibernateController {
     }
 
     public static Actor searchActor(String CPF) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -126,7 +126,7 @@ public class HibernateController {
     }
 
     public static Director searchDirector(String CPF) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -144,7 +144,7 @@ public class HibernateController {
     }
 
     public static Movie searchMovie(String title) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -162,7 +162,7 @@ public class HibernateController {
     }
 
     public static Series searchSeries(String title) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -180,7 +180,7 @@ public class HibernateController {
     }
 
     public static User searchUser(String email) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -198,7 +198,7 @@ public class HibernateController {
     }
 
     public static boolean registerUser(User newUser) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();
@@ -216,7 +216,7 @@ public class HibernateController {
     }
 
     public static boolean login(String email, String password) {
-        EntityManager em = HibernateManager.em;
+        EntityManager em = HibernateManager.getEntityManager();
 
         try {
             em.getTransaction().begin();

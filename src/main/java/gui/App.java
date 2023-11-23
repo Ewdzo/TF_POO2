@@ -145,8 +145,7 @@ public class App extends Application{
 		stage.setScene(loginScene);
   	};
 
-	public static void main(String[] args) {
-		//Example.populate();		
+	public static void main(String[] args) {	
 		launch(args);
 	};
 

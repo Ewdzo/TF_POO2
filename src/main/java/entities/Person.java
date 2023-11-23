@@ -12,6 +12,7 @@ import javax.persistence.InheritanceType;
 public class Person {
     @Id
     public String CPF;
+    
     String name;
     Date birthDate;
     String photo;

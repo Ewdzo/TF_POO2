@@ -9,7 +9,7 @@ import entities.Movie;
 import entities.Series;
 
 public class Example {
-    public static void populate(){
+    public static void populate() {
         Actor a1 = new Actor("000.000.000-01", "Ryan Gosling", new GregorianCalendar(2001, 11, 12).getTime(), "path");
         Actor a2 = new Actor("000.000.000-02", "Anne Hathaway", new GregorianCalendar(2001, 11, 12).getTime(), "path");
         

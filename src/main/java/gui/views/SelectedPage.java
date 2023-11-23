@@ -137,8 +137,8 @@ public class SelectedPage extends BorderPane {
     movieTitle.setFont(new Font("Arial", 30));
     movieTitle.setTextFill(Color.WHITE);
 
-    Label notaDescription = new Label("Elenco: ");
-    notaDescription.setFont(new Font("Arial", 15));
+    Label notaDescription = new Label("Nota: ");
+    notaDescription.setFont(new Font("Arial", 5));
     notaDescription.setWrapText(true);
     notaDescription.setTextFill(Color.WHITE);
     notaDescription.setMaxWidth(500);
@@ -163,7 +163,7 @@ public class SelectedPage extends BorderPane {
     diretorDescription.setTextFill(Color.WHITE);
     diretorDescription.setMaxWidth(500);
 
-    movieDetails.getChildren().addAll(movieTitle, ratingBox, castDescription, movieDescription, diretorDescription);
+    movieDetails.getChildren().addAll(movieTitle, notaDescription, ratingBox, castDescription, movieDescription, diretorDescription);
 
     // HBox para agrupar a imagem e os detalhes do filme
     HBox movieContent = new HBox(movieImage, movieDetails);

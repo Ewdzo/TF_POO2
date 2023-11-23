@@ -7,6 +7,11 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
+import javafx.scene.layout.BackgroundPosition;
+import javafx.scene.layout.BackgroundRepeat;
+import javafx.scene.layout.BackgroundSize;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -81,6 +86,12 @@ public class SelectedPage extends BorderPane {
     mainContent.setAlignment(Pos.CENTER);
     mainContent.setSpacing(20);
     mainContent.setPadding(new Insets(10));
+
+    // Carregar a imagem de fundo
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg")); // Substitua com o caminho correto da imagem
+    BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
+    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+    mainContent.setBackground(new Background(bgImage));
 
     // Imagem do filme
     Image capaFilme = new Image(getClass().getResourceAsStream("../assets/capaFilme1.jpeg"));

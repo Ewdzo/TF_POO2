@@ -107,7 +107,6 @@ public class SelectedPage extends BorderPane {
     ImageView movieImage = new ImageView(capaFilme);
     movieImage.setFitHeight(300);
     movieImage.setFitWidth(200);
-    // margin de 20 a esquerda
     movieImage.setTranslateX(100);
     movieImage.setPreserveRatio(true);
 

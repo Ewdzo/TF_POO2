@@ -1,7 +1,12 @@
 package gui.views;
+import helper.HibernateController;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
@@ -23,6 +28,17 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class LoginPage extends BorderPane {
+  @FXML
+  public void loginIntoSystem(ActionEvent event) {
+    String user = usuario.getText();
+    String password = senha.getText();
+    
+    if(!HibernateController.login(user, password)) {
+      new Alert(AlertType.ERROR).show();
+    };
+  };
+  
+
   public LoginPage() {
 
     // Barra de navegação
@@ -35,6 +51,10 @@ public class LoginPage extends BorderPane {
     this.setTop(navBar);
     this.setCenter(mainContent);
   }
+
+  PasswordField senha;
+  TextField usuario;
+
 
   private HBox createNavBar() {
     HBox navBar = new HBox();
@@ -90,13 +110,13 @@ public class LoginPage extends BorderPane {
     loginLabel.setFont(Font.font("Arial", FontWeight.EXTRA_BOLD, 40));
     loginLabel.setStyle("-fx-text-fill: #FFFFFF;");
 
-    TextField usuario = new TextField();
+    usuario = new TextField();
     usuario.setId("usuarioTextField");
     usuario.setPromptText("E-mail");
     usuario.setMinHeight(40); // Altura mínima do campo de texto
     usuario.setMaxWidth(300); // Largura máxima do campo de texto
 
-    PasswordField senha = new PasswordField();
+    senha = new PasswordField();
     senha.setId("senhaTextField");
     senha.setPromptText("Senha");
     senha.setMinHeight(40);
@@ -104,6 +124,7 @@ public class LoginPage extends BorderPane {
 
     Button loginButton = new Button("Entrar");
     loginButton.setId("loginButton");
+    loginButton.setOnAction(this::loginIntoSystem);
     loginButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
     loginButton.setMaxHeight(40); // Altura máxima do botão
     loginButton.setMaxWidth(300); // Largura máxima do botão

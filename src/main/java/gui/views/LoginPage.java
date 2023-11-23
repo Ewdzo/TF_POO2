@@ -28,6 +28,11 @@ import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
 public class LoginPage extends BorderPane {
+  PasswordField senha;
+  TextField usuario;
+  Button loginButton;
+
+
   @FXML
   public void loginIntoSystem(ActionEvent event) {
     String user = usuario.getText();
@@ -38,10 +43,11 @@ public class LoginPage extends BorderPane {
       alert.setTitle("Cadastro não encontrado");
       alert.setContentText("Cadastro inválido ou dados informados incorretamente");
       alert.show();
+    } else {
+      switchToHomePage(loginButton);
     };
   };
   
-
   public LoginPage() {
 
     // Barra de navegação
@@ -54,9 +60,6 @@ public class LoginPage extends BorderPane {
     this.setTop(navBar);
     this.setCenter(mainContent);
   }
-
-  PasswordField senha;
-  TextField usuario;
 
   private HBox createNavBar() {
     HBox navBar = new HBox();
@@ -124,7 +127,7 @@ public class LoginPage extends BorderPane {
     senha.setMinHeight(40);
     senha.setMaxWidth(300); // Largura máxima do campo de senha
 
-    Button loginButton = new Button("Entrar");
+    loginButton = new Button("Entrar");
     loginButton.setId("loginButton");
     loginButton.setOnAction(this::loginIntoSystem);
     loginButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
@@ -143,10 +146,10 @@ public class LoginPage extends BorderPane {
     Scene RegistroScene = new Scene(RegistroPage, stage.getWidth(), stage.getHeight());
     stage.setScene(RegistroScene);
   }
-  
+
   private void switchToHomePage(Button button) {
     Stage stage = (Stage) button.getScene().getWindow();
-    SelectedPage SelectedPage = new SelectedPage();
+    HomePage SelectedPage = new HomePage();
     Scene SelectedScene = new Scene(SelectedPage, stage.getWidth(), stage.getHeight());
     stage.setScene(SelectedScene);
   }

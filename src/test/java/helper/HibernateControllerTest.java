@@ -6,7 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
@@ -22,8 +21,6 @@ import entities.Director;
 import entities.Movie;
 import entities.Series;
 import entities.User;
-
-
 
 public class HibernateControllerTest {
 
@@ -87,9 +84,9 @@ public class HibernateControllerTest {
         Movie movie = HibernateController.searchMovie(title);
         assertNotNull(movie);
         assertEquals(title, movie.getTitle());
-        //assertEquals(cast, movie.getCast());
+        // assertEquals(cast, movie.getCast());
         assertEquals(grade, movie.getGrade(), 0.01);
-        //assertEquals(director, movie.getDirector());
+        // assertEquals(director, movie.getDirector());
         assertEquals(description, movie.getDescription());
         assertEquals(photo, movie.getPhoto());
     }
@@ -111,9 +108,9 @@ public class HibernateControllerTest {
         Series series = HibernateController.searchSeries(title);
         assertNotNull(series);
         assertEquals(title, series.getTitle());
-        //assertEquals(cast, series.getCast());
+        // assertEquals(cast, series.getCast());
         assertNotEquals(grade, series.getGrade(), 0.01);
-        //assertEquals(director, series.getDirector());
+        // assertEquals(director, series.getDirector());
         assertEquals(description, series.getDescription());
         assertEquals(photo, series.getPhoto());
         assertEquals(seasons, series.getSeasons());
@@ -217,15 +214,15 @@ public class HibernateControllerTest {
     @AfterAll
     public static void tearDown() {
         EntityManager em = HibernateManager.getEntityManager();
-        
+
         try {
             em.getTransaction().begin();
 
-            HibernateManager.getEntityManager().remove(     HibernateController.searchActor("000.000.000-99")      );
-            HibernateManager.getEntityManager().remove(     HibernateController.searchDirector("000.000.000-98")   );
-            HibernateManager.getEntityManager().remove(     HibernateController.searchMovie("Inception")         );
-            HibernateManager.getEntityManager().remove(     HibernateController.searchActor("Better Call Saul")    );
-            HibernateManager.getEntityManager().remove(     HibernateController.searchUser("user@example.com")   );
+            HibernateManager.getEntityManager().remove(HibernateController.searchActor("000.000.000-99"));
+            HibernateManager.getEntityManager().remove(HibernateController.searchDirector("000.000.000-98"));
+            HibernateManager.getEntityManager().remove(HibernateController.searchMovie("Inception"));
+            HibernateManager.getEntityManager().remove(HibernateController.searchActor("Better Call Saul"));
+            HibernateManager.getEntityManager().remove(HibernateController.searchUser("user@example.com"));
 
         } catch (Exception e) {
             e.printStackTrace();

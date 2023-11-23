@@ -1,4 +1,5 @@
 package gui.views;
+
 import helper.HibernateController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -32,22 +33,22 @@ public class LoginPage extends BorderPane {
   TextField usuario;
   Button loginButton;
 
-
   @FXML
   public void loginIntoSystem(ActionEvent event) {
     String user = usuario.getText();
     String password = senha.getText();
-    
-    if(!HibernateController.login(user, password)) {
+
+    if (!HibernateController.login(user, password)) {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("Cadastro não encontrado");
       alert.setContentText("Cadastro inválido ou dados informados incorretamente");
       alert.show();
     } else {
       switchToHomePage(loginButton);
-    };
+    }
+    ;
   };
-  
+
   public LoginPage() {
 
     // Barra de navegação

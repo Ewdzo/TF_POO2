@@ -1,7 +1,5 @@
 package gui.views;
 
-import org.hibernate.Hibernate;
-
 import entities.Media;
 import helper.HibernateController;
 import javafx.geometry.Insets;
@@ -221,7 +219,6 @@ public class SelectedPage extends BorderPane {
       starView.setImage(new Image(getClass().getResourceAsStream("../assets/iconStarLivre.png")));
     }
   }
-
 
   private void handleBackAction(Button button) {
     Stage stage = (Stage) button.getScene().getWindow();

@@ -235,10 +235,10 @@ public class SelectedPage extends BorderPane {
   }
 
   private void switchToFilmPage(Button button) {
-    Stage stage = (Stage) button.getScene().getWindow();
-    FilmeSeriePage FilmeSeriePage = new FilmeSeriePage();
-    Scene FilmScene = new Scene(FilmeSeriePage, stage.getWidth(), stage.getHeight());
-    stage.setScene(FilmScene);
+		Stage stage = (Stage) button.getScene().getWindow();
+		HomePage HomePage = new HomePage();
+		Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
+		stage.setScene(homeScene);
   }
 
   private void switchToCategoryPage(Button button) {

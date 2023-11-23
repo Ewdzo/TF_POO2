@@ -15,4 +15,12 @@ public class Series extends Media {
         this.episodes = episodes;
     };
 
+
+    public int getSeasons() {
+        return this.seasons;
+    }
+
+    public int getEpisodes() {
+        return this.episodes;
+    }
 }

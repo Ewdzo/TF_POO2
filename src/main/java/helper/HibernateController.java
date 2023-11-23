@@ -1,8 +1,5 @@
 package helper;
 
-import java.util.Date;
-import java.util.List;
-
 import javax.persistence.EntityManager;
 
 import entities.Actor;
@@ -175,6 +172,24 @@ public class HibernateController {
             em.getTransaction().commit();
 
             return movie;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public static User searchUser(String email) {
+        EntityManager em = HibernateManager.em;
+
+        try {
+            em.getTransaction().begin();
+
+            User user = em.find(User.class, email);
+
+            em.getTransaction().commit();
+
+            return user;
         } catch (Exception e) {
             return null;
         } finally {

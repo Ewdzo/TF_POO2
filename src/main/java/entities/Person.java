@@ -22,4 +22,20 @@ public class Person {
         this.birthDate = birthDate;
         this.photo = photo;
     }
+
+    public String getCPF() {
+        return this.CPF;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public Date getBirthDate() {
+        return this.birthDate;
+    }
+
+    public String getPhoto() {
+        return this.photo;
+    }
 }

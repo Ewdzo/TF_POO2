@@ -48,4 +48,32 @@ public class Media {
         this.grade += ((grade - this.grade) / reviews );
     }
 
+    public String getTitle() {
+        return this.title;
+    }
+
+    public List<Actor> getCast() {
+        return this.cast;
+    }
+
+    public double getGrade() {
+        return this.grade;
+    }
+
+    public int getReviews() {
+        return this.reviews;
+    }
+
+    public Director getDirector() {
+        return this.director;
+    }
+
+    public String getDescription() {
+        return this.description;
+    }
+
+    public String getPhoto() {
+        return this.photo;
+    }
+
 }

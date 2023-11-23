@@ -18,4 +18,20 @@ public class User {
         this.username = username;
         this.photo = photo;
     }
+
+    public String getEmail() {
+        return this.email;
+    }
+    
+    public String getPassword() {
+        return this.password;
+    }
+    
+    public String getUsername() {
+        return this.username;
+    }
+    
+    public String getPhoto() {
+        return this.photo;
+    }
 }

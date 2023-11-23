@@ -22,8 +22,7 @@ public class APIConsumer implements Initializable {
     private TextField senhaTextField;
 
     @FXML
-    private void loginIntoSystem(ActionEvent event) {
-        System.out.println("hi");
+    public void loginIntoSystem(ActionEvent event) {
         String user = usuarioTextField.getText();
         String password = senhaTextField.getText();
 

@@ -106,8 +106,7 @@ public class App extends Application{
 		// Carregar a imagem de fundo
 		Image backgroundImage = new Image(getClass().getResourceAsStream("assets/Netflix-Background.jpg")); // Substitua com o caminho correto da imagem
 		BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
-		BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
-			BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+		BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
 
 		// Definir a imagem de fundo no VBox
 		mainContent.setBackground(new Background(bgImage));

@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "App",
+            "request": "launch",
+            "mainClass": "gui.App",
+            "projectName": "trabalhoFinal"
+        },
+        {
+            "type": "java",
             "name": "mainApplication",
             "request": "launch",
             "mainClass": "gui.App",

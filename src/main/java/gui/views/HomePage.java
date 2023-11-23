@@ -4,9 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.PasswordField;
 import javafx.scene.control.ScrollPane;
-import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -60,6 +58,7 @@ public class HomePage extends BorderPane {
     homeButton.setStyle(buttonStyle);
     homeButton.setOnMouseEntered(e -> homeButton.setStyle(buttonHoverStyle));
     homeButton.setOnMouseExited(e -> homeButton.setStyle(buttonStyle));
+    homeButton.setOnAction(e -> switchToHomePage(homeButton));
 
     filmButton.setStyle(buttonStyle);
     filmButton.setOnMouseEntered(e -> filmButton.setStyle(buttonHoverStyle));
@@ -137,6 +136,12 @@ public class HomePage extends BorderPane {
     return categoryBox;
   }
 
+  private void switchToHomePage(Button button) {
+    Stage stage = (Stage) button.getScene().getWindow();
+    SelectedPage SelectedPage = new SelectedPage();
+    Scene SelectedScene = new Scene(SelectedPage, stage.getWidth(), stage.getHeight());
+    stage.setScene(SelectedScene);
+  }
   private void switchToFilmPage(Button button) {
     Stage stage = (Stage) button.getScene().getWindow();
     FilmeSeriePage FilmeSeriePage = new FilmeSeriePage();

@@ -40,7 +40,7 @@ public class HibernateControllerTest {
 
     @Test
     public void testRegisterActor() {
-        String cpf = "000.000.000-01";
+        String cpf = "000.000.000-99";
         String name = "Ryan Gosling";
         Date birthDate = new GregorianCalendar(1995, 11, 12).getTime();
         String photo = "path";
@@ -57,7 +57,7 @@ public class HibernateControllerTest {
 
     @Test
     public void testRegisterDirector() {
-        String cpf = "000.000.000-02";
+        String cpf = "000.000.000-98";
         String name = "Christopher Nolan";
         Date birthDate = new GregorianCalendar(1994, 11, 12).getTime();
         String photo = "nolan_photo.jpg";
@@ -75,8 +75,8 @@ public class HibernateControllerTest {
     @Test
     public void testRegisterMovie() {
         String title = "Inception";
-        List<Actor> cast = List.of(HibernateController.searchActor("000.000.000-01"));
-        Director director = HibernateController.searchDirector("000.000.000-02");
+        List<Actor> cast = List.of(HibernateController.searchActor("000.000.000-99"));
+        Director director = HibernateController.searchDirector("000.000.000-98");
         double grade = 10;
         String description = "Dom Cobb é um ladrão com a rara habilidade de roubar segredos do inconsciente, obtidos durante o estado de sono.";
         String photo = "inception_poster.jpg";
@@ -97,8 +97,8 @@ public class HibernateControllerTest {
     @Test
     public void testRegisterSeries() {
         String title = "Better Call Saul";
-        List<Actor> cast = List.of(HibernateController.searchActor("000.000.000-01"));
-        Director director = HibernateController.searchDirector("000.000.000-02");
+        List<Actor> cast = List.of(HibernateController.searchActor("000.000.000-99"));
+        Director director = HibernateController.searchDirector("000.000.000-98");
         String description = "Jimmy McGill, também como conhecido como Saul Goodman, tenta ser um homem honesto e construir uma carreira de respeito. Mas há um lado seu que só quer aplicar golpes e se tornar um advogado picareta.";
         String photo = "saul3D.gif";
         int seasons = 6;
@@ -150,7 +150,7 @@ public class HibernateControllerTest {
 
     @Test
     public void testSearchActor() {
-        String cpf = "000.000.000-01";
+        String cpf = "000.000.000-99";
         Actor actor = HibernateController.searchActor(cpf);
 
         assertNotNull(actor);
@@ -159,7 +159,7 @@ public class HibernateControllerTest {
 
     @Test
     public void testSearchDirector() {
-        String cpf = "000.000.000-02";
+        String cpf = "000.000.000-98";
         Director director = HibernateController.searchDirector(cpf);
 
         assertNotNull(director);
@@ -221,8 +221,8 @@ public class HibernateControllerTest {
         try {
             em.getTransaction().begin();
 
-            HibernateManager.getEntityManager().remove(     HibernateController.searchActor("000.000.000-01")      );
-            HibernateManager.getEntityManager().remove(     HibernateController.searchDirector("000.000.000-02")   );
+            HibernateManager.getEntityManager().remove(     HibernateController.searchActor("000.000.000-99")      );
+            HibernateManager.getEntityManager().remove(     HibernateController.searchDirector("000.000.000-98")   );
             HibernateManager.getEntityManager().remove(     HibernateController.searchMovie("Inception")         );
             HibernateManager.getEntityManager().remove(     HibernateController.searchActor("Better Call Saul")    );
             HibernateManager.getEntityManager().remove(     HibernateController.searchUser("user@example.com")   );

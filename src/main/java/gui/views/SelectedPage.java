@@ -194,7 +194,7 @@ public class SelectedPage extends BorderPane {
     DropShadow glowEffect = createGlowEffect();
 
     for (int i = 0; i < 5; i++) {
-      Image star = new Image(getClass().getResourceAsStream("../assets/iconStar.png"));
+      Image star = new Image(getClass().getResourceAsStream("../assets/iconStarLivre.png"));
       ImageView starView = new ImageView(star);
       starView.setFitHeight(30);
       starView.setFitWidth(30);

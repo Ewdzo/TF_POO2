@@ -5,6 +5,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
@@ -98,8 +99,26 @@ public class SelectedPage extends BorderPane {
 
     // Botão Voltar
     Button backButton = new Button();
-    Image backIcon = new Image(getClass().getResourceAsStream("../assets/iconBack.svg"));
-    backButton.setGraphic(new ImageView(backIcon));
+    Image backIcon = new Image(getClass().getResourceAsStream("../assets/iconBack.png"));
+    ImageView backIconView = new ImageView(backIcon);
+    backIconView.setFitHeight(30);
+    backIconView.setPreserveRatio(true);
+    backButton.setGraphic(backIconView);
+
+    // Estilização opcional
+    backButton.setStyle("-fx-background-color: transparent;");
+    backButton.setPadding(new Insets(5, 5, 5, 5));
+
+    // Efeito de hover com DropShadow
+    DropShadow dropShadow = new DropShadow();
+    dropShadow.setColor(Color.WHITE);
+    dropShadow.setRadius(10);
+    dropShadow.setSpread(0.5);
+
+    backButton.setOnMouseEntered(e -> backIconView.setEffect(dropShadow));
+    backButton.setOnMouseExited(e -> backIconView.setEffect(null));
+
+    // Ação do botão Voltar
     backButton.setOnAction(e -> handleBackAction());
 
     // Imagem do filme
@@ -107,34 +126,53 @@ public class SelectedPage extends BorderPane {
     ImageView movieImage = new ImageView(capaFilme);
     movieImage.setFitHeight(300);
     movieImage.setFitWidth(200);
-    movieImage.setTranslateX(100);
     movieImage.setPreserveRatio(true);
 
-    // Título do filme
+    // Título do filme e descrições
+    VBox movieDetails = new VBox();
+    movieDetails.setAlignment(Pos.CENTER_LEFT);
+    movieDetails.setSpacing(10);
+
     Label movieTitle = new Label("Título do Filme");
     movieTitle.setFont(new Font("Arial", 30));
     movieTitle.setTextFill(Color.WHITE);
 
-    // HBox para capa do filme e título
-    HBox movieHeader = new HBox(movieImage, movieTitle);
-    movieHeader.setAlignment(Pos.CENTER_LEFT);
-    movieHeader.setSpacing(80);
+    Label notaDescription = new Label("Elenco: ");
+    notaDescription.setFont(new Font("Arial", 15));
+    notaDescription.setWrapText(true);
+    notaDescription.setTextFill(Color.WHITE);
+    notaDescription.setMaxWidth(500);
 
-    // Sistema de avaliação
     HBox ratingBox = createRatingBox();
 
-    // Descrição do elenco
-    Label castDescription = new Label("Elenco: Nome dos atores...");
+    Label castDescription = new Label("Elenco: ");
+    castDescription.setFont(new Font("Arial", 15));
     castDescription.setWrapText(true);
     castDescription.setTextFill(Color.WHITE);
+    castDescription.setMaxWidth(500);
 
-    // Descrição do filme
-    Label movieDescription = new Label("Descrição do filme...");
+    Label movieDescription = new Label("Spoiler do filme: ");
+    movieDescription.setFont(new Font("Arial", 15));
     movieDescription.setWrapText(true);
     movieDescription.setTextFill(Color.WHITE);
+    movieDescription.setMaxWidth(500);
 
-    // Adicionar todos os elementos ao VBox
-    mainContent.getChildren().addAll(backButton, movieHeader, ratingBox, castDescription, movieDescription);
+    Label diretorDescription = new Label("Diretor: ");
+    diretorDescription.setFont(new Font("Arial", 15));
+    diretorDescription.setWrapText(true);
+    diretorDescription.setTextFill(Color.WHITE);
+    diretorDescription.setMaxWidth(500);
+
+    movieDetails.getChildren().addAll(movieTitle, ratingBox, castDescription, movieDescription, diretorDescription);
+
+    // HBox para agrupar a imagem e os detalhes do filme
+    HBox movieContent = new HBox(movieImage, movieDetails);
+    movieContent.setAlignment(Pos.CENTER_LEFT);
+    movieContent.setSpacing(80);
+    movieContent.setPadding(new Insets(50, 0, 0, 200));
+
+    // Adicionar todos os elementos ao VBox principal
+    mainContent.getChildren().addAll(backButton, movieContent);
 
     return mainContent;
   }
@@ -145,7 +183,7 @@ public class SelectedPage extends BorderPane {
     ratingBox.setSpacing(10);
 
     for (int i = 1; i <= 5; i++) {
-      Image star = new Image(getClass().getResourceAsStream("../assets/iconStar.svg"));
+      Image star = new Image(getClass().getResourceAsStream("../assets/iconStar.png"));
       ImageView starView = new ImageView(star);
       starView.setFitHeight(30);
       starView.setFitWidth(30);

@@ -4,13 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.criteria.CriteriaBuilder;
-
-import org.hibernate.Criteria;
-import org.hibernate.SessionFactory;
-
-import com.mysql.cj.Session;
 
 import entities.Actor;
 import entities.Director;

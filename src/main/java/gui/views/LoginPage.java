@@ -34,7 +34,10 @@ public class LoginPage extends BorderPane {
     String password = senha.getText();
     
     if(!HibernateController.login(user, password)) {
-      new Alert(AlertType.ERROR).show();
+      Alert alert = new Alert(AlertType.ERROR);
+      alert.setTitle("Cadastro não encontrado");
+      alert.setContentText("Cadastro inválido ou dados informados incorretamente");
+      alert.show();
     };
   };
   
@@ -54,7 +57,6 @@ public class LoginPage extends BorderPane {
 
   PasswordField senha;
   TextField usuario;
-
 
   private HBox createNavBar() {
     HBox navBar = new HBox();
@@ -140,5 +142,12 @@ public class LoginPage extends BorderPane {
     RegistroPage RegistroPage = new RegistroPage();
     Scene RegistroScene = new Scene(RegistroPage, stage.getWidth(), stage.getHeight());
     stage.setScene(RegistroScene);
+  }
+  
+  private void switchToHomePage(Button button) {
+    Stage stage = (Stage) button.getScene().getWindow();
+    SelectedPage SelectedPage = new SelectedPage();
+    Scene SelectedScene = new Scene(SelectedPage, stage.getWidth(), stage.getHeight());
+    stage.setScene(SelectedScene);
   }
 }

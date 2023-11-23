@@ -83,7 +83,8 @@ public class SelectedPage extends BorderPane {
     mainContent.setPadding(new Insets(10));
 
     // Imagem do filme
-    ImageView movieImage = new ImageView(new Image("../assets/capaFilme1.jpeg")); // Substitua com o caminho correto da
+    Image capaFilme = new Image(getClass().getResourceAsStream("../assets/capaFilme1.jpeg"));
+    ImageView movieImage = new ImageView(capaFilme); // Substitua com o caminho correto da
     movieImage.setFitHeight(300); // Ajuste conforme necessário
     movieImage.setFitWidth(200);
     movieImage.setPreserveRatio(true);
@@ -102,13 +103,14 @@ public class SelectedPage extends BorderPane {
     ratingBox.setSpacing(10);
 
     for (int i = 1; i <= 5; i++) {
-      ImageView star = new ImageView(new Image("../assets/iconStar.png"));
-      star.setFitHeight(30);
-      star.setFitWidth(30);
-      star.setPreserveRatio(true);
+      Image star = new Image(getClass().getResourceAsStream("../assets/iconStar.svg"));
+      ImageView starView = new ImageView(star);
+      starView.setFitHeight(30);
+      starView.setFitWidth(30);
+      starView.setPreserveRatio(true);
       int finalI = i;
-      star.setOnMouseClicked(e -> handleRating(finalI));
-      ratingBox.getChildren().add(star);
+      starView.setOnMouseClicked(e -> handleRating(finalI));
+      ratingBox.getChildren().add(starView);
     }
 
     // Adicionar todos os elementos ao VBox

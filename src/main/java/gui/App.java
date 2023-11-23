@@ -1,18 +1,11 @@
 package gui;
 
-import java.io.IOException;
-import java.util.GregorianCalendar;
-
 import gui.views.HomePage;
 import gui.views.LoginPage;
 import helper.Example;
-import helper.HibernateController;
-import helper.HibernateManager;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -32,10 +25,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
-public class App extends Application{
+public class App extends Application {
 
 	@Override
-  	public void start(Stage primaryStage) {
+	public void start(Stage primaryStage) {
 		primaryStage.setTitle("Sistema de Compartilhamento de Filmes e Séries");
 		primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("assets/iconNetflix.png")));
 
@@ -58,7 +51,7 @@ public class App extends Application{
 		primaryStage.setMinWidth(1000);
 		primaryStage.setMinHeight(700);
 		primaryStage.show();
-  	}
+	}
 
 	private HBox createNavBar() {
 		HBox navBar = new HBox();
@@ -66,7 +59,8 @@ public class App extends Application{
 		navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
 
 		// Botão Home com logo da Netflix
-		Image netflixLogo = new Image(getClass().getResourceAsStream("assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
+		Image netflixLogo = new Image(getClass().getResourceAsStream("assets/iconNetflix.png")); // Substitua com o caminho
+																																															// correto da imagem
 		ImageView logoView = new ImageView(netflixLogo);
 		logoView.setFitHeight(30); // Ajuste conforme necessário
 		logoView.setPreserveRatio(true);
@@ -104,9 +98,13 @@ public class App extends Application{
 		mainContent.setAlignment(Pos.CENTER);
 
 		// Carregar a imagem de fundo
-		Image backgroundImage = new Image(getClass().getResourceAsStream("assets/Netflix-Background.jpg")); // Substitua com o caminho correto da imagem
+		Image backgroundImage = new Image(getClass().getResourceAsStream("assets/Netflix-Background.jpg")); // Substitua com
+																																																				// o caminho
+																																																				// correto da
+																																																				// imagem
 		BackgroundSize bgSize = new BackgroundSize(100, 100, true, true, true, true);
-		BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+		BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
+				BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
 
 		// Definir a imagem de fundo no VBox
 		mainContent.setBackground(new Background(bgImage));
@@ -121,9 +119,9 @@ public class App extends Application{
 		startButton.setOnAction(e -> switchToLoginPage(startButton));
 		startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;");
 		startButton.setOnMouseEntered(
-			e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #B20710; -fx-text-fill: #FFFFFF;"));
+				e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #B20710; -fx-text-fill: #FFFFFF;"));
 		startButton.setOnMouseExited(
-			e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;"));
+				e -> startButton.setStyle("-fx-font-size: 16px; -fx-background-color: #E50914; -fx-text-fill: #FFFFFF;"));
 
 		// Adicionar elementos ao VBox
 		mainContent.getChildren().addAll(titleLabel, startButton);
@@ -138,14 +136,14 @@ public class App extends Application{
 		stage.setScene(homeScene);
 	};
 
-  	private void switchToLoginPage(Button button) {
+	private void switchToLoginPage(Button button) {
 		Stage stage = (Stage) button.getScene().getWindow();
 		LoginPage loginPage = new LoginPage();
 		Scene loginScene = new Scene(loginPage, stage.getWidth(), stage.getHeight());
 		stage.setScene(loginScene);
-  	};
+	};
 
-	public static void main(String[] args) {	
+	public static void main(String[] args) {
 		Example.populate();
 		launch(args);
 	};

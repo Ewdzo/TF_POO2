@@ -1,6 +1,16 @@
 package helper;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
+import javax.persistence.criteria.CriteriaBuilder;
+
+import org.hibernate.Criteria;
+import org.hibernate.SessionFactory;
+
+import com.mysql.cj.Session;
 
 import entities.Actor;
 import entities.Director;
@@ -231,5 +241,49 @@ public class HibernateController {
         } finally {
             em.close();
         }  
+    }
+
+    public static ArrayList<Movie> getMovies(List<String> Movies) {
+        EntityManager em = HibernateManager.getEntityManager();
+        ArrayList<Movie> movies = new ArrayList<>();
+
+        try {
+            em.getTransaction().begin();
+            
+            for (String title : Movies) {
+                Movie movie = em.find(Movie.class, title);
+                movies.add(movie);
+            }
+
+            em.getTransaction().commit();
+
+            return movies;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
+    public static ArrayList<Series> getSeries(List<String> Series) {
+        EntityManager em = HibernateManager.getEntityManager();
+        ArrayList<Series> series = new ArrayList<>();
+
+        try {
+            em.getTransaction().begin();
+            
+            for (String title : Series) {
+                Series serie = em.find(Series.class, title);
+                series.add(serie);
+            };
+
+            em.getTransaction().commit();
+
+            return series;
+        } catch (Exception e) {
+            return null;
+        } finally {
+            em.close();
+        }
     }
 }

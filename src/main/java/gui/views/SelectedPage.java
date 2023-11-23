@@ -123,7 +123,7 @@ public class SelectedPage extends BorderPane {
     backButton.setOnAction(e -> handleBackAction(backButton));
 
     // Imagem do filme
-    Image capaFilme = new Image(getClass().getResourceAsStream("../assets/capaFilme1.jpeg"));
+    Image capaFilme = new Image(getClass().getResourceAsStream("../assets/capaFilme.jpeg"));
     ImageView movieImage = new ImageView(capaFilme);
     movieImage.setFitHeight(300);
     movieImage.setFitWidth(200);

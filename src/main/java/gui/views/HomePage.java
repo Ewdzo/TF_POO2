@@ -1,4 +1,5 @@
 package gui.views;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -40,7 +41,9 @@ public class HomePage extends BorderPane {
     navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
 
     // Botão Home com logo da Netflix
-    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
+    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o
+                                                                                                // caminho correto da
+                                                                                                // imagem
     ImageView logoView = new ImageView(netflixLogo);
     logoView.setFitHeight(30); // Ajuste conforme necessário
     logoView.setPreserveRatio(true);
@@ -89,16 +92,17 @@ public class HomePage extends BorderPane {
     contentBox.setSpacing(50); // Espaçamento entre os elementos
 
     // Carregar a imagem de fundo
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg")); // Substitua com o caminho correto da imagem
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg"));
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
-    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
+        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
     contentBox.setBackground(new Background(bgImage));
 
-    VBox filmesLancamentos = createCategory("Filmes Lançamentos", 5);
-    VBox recomendados = createCategory("Recomendados", 10);
-    VBox maisPopulares = createCategory("Mais Populares", 10);
-    VBox maisAvaliados = createCategory("Mais Avaliados", 10);
-    VBox maisVistos = createCategory("Mais Vistos", 10);
+    VBox filmesLancamentos = createCategory("Filmes Lançamentos", 1);
+    VBox recomendados = createCategory("Recomendados", 2);
+    VBox maisPopulares = createCategory("Mais Populares", 2);
+    VBox maisAvaliados = createCategory("Mais Avaliados", 2);
+    VBox maisVistos = createCategory("Mais Vistos", 1);
 
     // Adicionar categorias ao VBox
     contentBox.getChildren().addAll(filmesLancamentos, recomendados, maisPopulares, maisAvaliados, maisVistos);
@@ -127,9 +131,24 @@ public class HomePage extends BorderPane {
     movieList.setSpacing(10);
 
     for (int i = 1; i <= numberOfMovies; i++) {
-      Button movieButton = new Button("Filme " + i);
-      movieButton.setStyle("-fx-background-color: #333333; -fx-text-fill: #FFFFFF;");
-      movieList.getChildren().add(movieButton);
+      VBox movieBox = new VBox();
+      movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
+      movieBox.setAlignment(Pos.CENTER);
+      movieBox.setStyle("-fx-border-color: #FFFFFF; -fx-border-width: 1; -fx-padding: 10;");
+
+      // Imagem do filme (substitua com o caminho correto da imagem)
+      Image movieImage = new Image(getClass().getResourceAsStream("../assets/capaFilme" + i + ".jpeg"));
+      ImageView imageView = new ImageView(movieImage);
+      imageView.setFitHeight(100); // Ajuste conforme necessário
+      imageView.setFitWidth(100);
+      imageView.setPreserveRatio(true);
+
+      // Título do filme
+      Label movieTitle = new Label("Filme " + i);
+      movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
+
+      movieBox.getChildren().addAll(imageView, movieTitle);
+      movieList.getChildren().add(movieBox);
     }
 
     categoryBox.getChildren().addAll(categoryLabel, movieList);
@@ -142,6 +161,7 @@ public class HomePage extends BorderPane {
     Scene SelectedScene = new Scene(SelectedPage, stage.getWidth(), stage.getHeight());
     stage.setScene(SelectedScene);
   }
+
   private void switchToFilmPage(Button button) {
     Stage stage = (Stage) button.getScene().getWindow();
     FilmeSeriePage FilmeSeriePage = new FilmeSeriePage();

@@ -214,16 +214,16 @@ public class SelectedPage extends BorderPane {
         }
       });
 
-      starView.setOnMouseClicked(e -> handleRating(finalI + 1));
+      starView.setOnMouseClicked(e -> handleRating(starView, finalI + 1));
       ratingBox.getChildren().add(starView);
     }
 
     return ratingBox;
   }
 
-  private void handleRating(int rating) {
-    System.out.println("Avaliação: " + rating + " estrelas");
-    // Aqui você pode adicionar a lógica para lidar com a avaliação do filme
+  private void handleRating(ImageView view, int rating) {
+    HibernateController.reviewMovie(rating * 2, getAccessibleHelp());
+    view.setImage(new Image(getClass().getResourceAsStream("../assets/iconStarSelected.png")));
   }
 
   private void handleBackAction(Button button) {

@@ -17,6 +17,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 public class SelectedPage extends BorderPane {
@@ -83,32 +85,62 @@ public class SelectedPage extends BorderPane {
 
   private VBox createMainContent() {
     VBox mainContent = new VBox();
-    mainContent.setAlignment(Pos.CENTER);
+    mainContent.setAlignment(Pos.TOP_CENTER);
     mainContent.setSpacing(20);
     mainContent.setPadding(new Insets(10));
 
     // Carregar a imagem de fundo
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg")); // Substitua com o caminho correto da imagem
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg"));
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
-    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
+        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
     mainContent.setBackground(new Background(bgImage));
+
+    // Botão Voltar
+    Button backButton = new Button();
+    Image backIcon = new Image(getClass().getResourceAsStream("../assets/iconBack.svg"));
+    backButton.setGraphic(new ImageView(backIcon));
+    backButton.setOnAction(e -> handleBackAction());
 
     // Imagem do filme
     Image capaFilme = new Image(getClass().getResourceAsStream("../assets/capaFilme1.jpeg"));
-    ImageView movieImage = new ImageView(capaFilme); // Substitua com o caminho correto da
-    movieImage.setFitHeight(300); // Ajuste conforme necessário
+    ImageView movieImage = new ImageView(capaFilme);
+    movieImage.setFitHeight(300);
     movieImage.setFitWidth(200);
+    // margin de 20 a esquerda
+    movieImage.setTranslateX(100);
     movieImage.setPreserveRatio(true);
 
-    // Descrição do filme
-    Label movieDescription = new Label("Descrição do filme...");
-    movieDescription.setWrapText(true);
+    // Título do filme
+    Label movieTitle = new Label("Título do Filme");
+    movieTitle.setFont(new Font("Arial", 30));
+    movieTitle.setTextFill(Color.WHITE);
+
+    // HBox para capa do filme e título
+    HBox movieHeader = new HBox(movieImage, movieTitle);
+    movieHeader.setAlignment(Pos.CENTER_LEFT);
+    movieHeader.setSpacing(80);
+
+    // Sistema de avaliação
+    HBox ratingBox = createRatingBox();
 
     // Descrição do elenco
     Label castDescription = new Label("Elenco: Nome dos atores...");
     castDescription.setWrapText(true);
+    castDescription.setTextFill(Color.WHITE);
 
-    // Sistema de avaliação
+    // Descrição do filme
+    Label movieDescription = new Label("Descrição do filme...");
+    movieDescription.setWrapText(true);
+    movieDescription.setTextFill(Color.WHITE);
+
+    // Adicionar todos os elementos ao VBox
+    mainContent.getChildren().addAll(backButton, movieHeader, ratingBox, castDescription, movieDescription);
+
+    return mainContent;
+  }
+
+  private HBox createRatingBox() {
     HBox ratingBox = new HBox();
     ratingBox.setAlignment(Pos.CENTER);
     ratingBox.setSpacing(10);
@@ -124,15 +156,16 @@ public class SelectedPage extends BorderPane {
       ratingBox.getChildren().add(starView);
     }
 
-    // Adicionar todos os elementos ao VBox
-    mainContent.getChildren().addAll(movieImage, movieDescription, castDescription, ratingBox);
-
-    return mainContent;
+    return ratingBox;
   }
 
   private void handleRating(int rating) {
     System.out.println("Avaliação: " + rating + " estrelas");
     // Aqui você pode adicionar a lógica para lidar com a avaliação do filme
+  }
+
+  private void handleBackAction() {
+    // Aqui você pode adicionar a lógica para voltar para a tela anterior
   }
 
   private void switchToFilmPage(Button button) {

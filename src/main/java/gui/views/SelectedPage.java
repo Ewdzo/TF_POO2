@@ -230,10 +230,10 @@ public class SelectedPage extends BorderPane {
   }
 
   private void handleBackAction(Button button) {
-    Stage stage = (Stage) button.getScene().getWindow();
-    HomePage HomePage = new HomePage();
-    Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
-    stage.setScene(homeScene);
+		Stage stage = (Stage) button.getScene().getWindow();
+		HomePage HomePage = new HomePage();
+		Scene homeScene = new Scene(HomePage, stage.getWidth(), stage.getHeight());
+		stage.setScene(homeScene);
   }
 
   private void switchToFilmPage(Button button) {

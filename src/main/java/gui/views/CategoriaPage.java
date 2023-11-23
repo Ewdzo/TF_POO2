@@ -30,7 +30,7 @@ import javafx.stage.Stage;
 
 public class CategoriaPage extends BorderPane {
   ArrayList<Movie> movies = HibernateController.getMovies(List.of("The Flash", "Spiderverse", "Dune", "Whiplash", "La La Land"));
-  ArrayList<Series> series = HibernateController.getSeries(List.of("Wandinha", "Breaking Bad", "Better Call Saul", "Peaky Blinders", "Atlanta"));
+  ArrayList<Series> seriesA = HibernateController.getSeries(List.of("Wandinha", "Breaking Bad", "Better Call Saul", "Peaky Blinders", "Atlanta"));
 
   public CategoriaPage() {
 
@@ -98,34 +98,17 @@ public class CategoriaPage extends BorderPane {
     contentBox.setPadding(new Insets(50, 0, 0, 50)); // Ajuste os espaços conforme necessário
     contentBox.setSpacing(50); // Espaçamento entre os elementos
 
-    // Carregar a imagem de fundo
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg")); // Substitua com o caminho correto da imagem
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundHome.jpg"));
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
-    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
-        BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
+    BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT, BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);
     contentBox.setBackground(new Background(bgImage));
 
-    // ComboBox para seleção de categoria
-    ComboBox<String> categorySelector = new ComboBox<>();
-    categorySelector.getItems().addAll("Filmes", "Séries");
+    VBox filmes = createCategory("Filmes", movies);
+    VBox series = createCategory("Series", seriesA);
+  
 
-    // FlowPane para exibir os itens
-    FlowPane itemPane = new FlowPane();
-    itemPane.setHgap(30);
-    itemPane.setVgap(50);
-    itemPane.setAlignment(Pos.TOP_CENTER);
-    Insets currentInsets = itemPane.getPadding();
-    double bottomPadding = 600; // Defina o valor desejado para o padding inferior
-    itemPane.setPadding(
-        new Insets(currentInsets.getTop(), currentInsets.getRight(), bottomPadding, currentInsets.getLeft()));
-
-    // Listener para mudanças na ComboBox
-    categorySelector.valueProperty().addListener((obs, oldVal, newVal) -> {
-      itemPane.getChildren().clear();
-      populateItemPane(itemPane, newVal); // Método para popular o FlowPane com base na seleção
-    });
-
-    contentBox.getChildren().addAll(categorySelector, itemPane);
+    // Adicionar categorias ao VBox
+    contentBox.getChildren().addAll(filmes, series);
 
     // Criação do ScrollPane
     ScrollPane scrollPane = new ScrollPane(); // Altere o nome da variável para evitar conflito
@@ -137,15 +120,6 @@ public class CategoriaPage extends BorderPane {
     // Estilização do ScrollPane
     scrollPane.setStyle("-fx-color: black; -fx-border-width: 2;");
     return scrollPane;
-  }
-
-  private void populateItemPane(FlowPane pane, String category) {
-    int numItems = 10; // Defina o número de itens aqui
-    for (int i = 1; i <= numItems; i++) {
-      Button itemButton = new Button(category + " " + i);
-      itemButton.setStyle("-fx-background-color: #333333; -fx-text-fill: #FFFFFF;");
-      pane.getChildren().add(itemButton);
-    }
   }
 
   private VBox createCategory(String categoryName, List<? extends Media> medias) {
@@ -182,77 +156,6 @@ public class CategoriaPage extends BorderPane {
       movieBox.getChildren().addAll(imageView, movieTitle);
       movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
 
-      movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
-
-      movieList.getChildren().add(movieButton);
-    }
-
-    categoryBox.getChildren().addAll(categoryLabel, movieList);
-    return categoryBox;
-  }
-
-  private VBox createCategory(String categoryName, List<? extends Media> medias1, List<? extends Media> medias2) {
-    VBox categoryBox = new VBox();
-    categoryBox.setPadding(new Insets(10));
-    categoryBox.setSpacing(10);
-
-    Label categoryLabel = new Label(categoryName);
-    categoryLabel.setStyle("-fx-font-size: 20px; -fx-text-fill: #FFFFFF;");
-
-    HBox movieList = new HBox();
-    movieList.setSpacing(10);
-    
-    for (Media media : medias1) {
-      Button movieButton = new Button();
-      movieButton.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
-
-      VBox movieBox = new VBox();
-      movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
-      movieBox.setAlignment(Pos.CENTER);
-
-      // Imagem do filme
-      Image movieImage = new Image(getClass().getResourceAsStream(media.getPhoto()));
-      ImageView imageView = new ImageView(movieImage);
-      imageView.setFitHeight(100); // Ajuste conforme necessário
-      imageView.setFitWidth(100);
-      imageView.setPreserveRatio(true);
-
-      // Título do filme
-      Label movieTitle = new Label(media.getTitle());
-      movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
-
-      movieBox.getChildren().addAll(imageView, movieTitle);
-      movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
-
-      // Adiciona ação ao botão
-      movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
-
-      movieList.getChildren().add(movieButton);
-    }
-
-    for (Media media : medias2) {
-      Button movieButton = new Button();
-      movieButton.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
-
-      VBox movieBox = new VBox();
-      movieBox.setSpacing(5); // Espaçamento entre a imagem e o título
-      movieBox.setAlignment(Pos.CENTER);
-
-      // Imagem do filme
-      Image movieImage = new Image(getClass().getResourceAsStream(media.getPhoto()));
-      ImageView imageView = new ImageView(movieImage);
-      imageView.setFitHeight(100); // Ajuste conforme necessário
-      imageView.setFitWidth(100);
-      imageView.setPreserveRatio(true);
-
-      // Título do filme
-      Label movieTitle = new Label(media.getTitle());
-      movieTitle.setStyle("-fx-text-fill: #FFFFFF;");
-
-      movieBox.getChildren().addAll(imageView, movieTitle);
-      movieButton.setGraphic(movieBox); // Define o VBox como conteúdo gráfico do botão
-
-      // Adiciona ação ao botão
       movieButton.setOnAction(e -> switchToSelectedPage(movieButton, media));
 
       movieList.getChildren().add(movieButton);

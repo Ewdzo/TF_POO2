@@ -1,5 +1,4 @@
 package gui.views;
-
 import helper.HibernateController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -33,22 +32,22 @@ public class LoginPage extends BorderPane {
   TextField usuario;
   Button loginButton;
 
+
   @FXML
   public void loginIntoSystem(ActionEvent event) {
     String user = usuario.getText();
     String password = senha.getText();
-
-    if (!HibernateController.login(user, password)) {
+    
+    if(!HibernateController.login(user, password)) {
       Alert alert = new Alert(AlertType.ERROR);
       alert.setTitle("Cadastro não encontrado");
       alert.setContentText("Cadastro inválido ou dados informados incorretamente");
       alert.show();
     } else {
       switchToHomePage(loginButton);
-    }
-    ;
+    };
   };
-
+  
   public LoginPage() {
 
     // Barra de navegação
@@ -68,9 +67,7 @@ public class LoginPage extends BorderPane {
     navBar.setStyle("-fx-background-color: #E50914;"); // Cor de fundo da barra de navegação
 
     // Botão Home com logo da Netflix
-    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o
-                                                                                                // caminho correto da
-                                                                                                // imagem
+    Image netflixLogo = new Image(getClass().getResourceAsStream("../assets/iconNetflix.png")); // Substitua com o caminho correto da imagem
     ImageView logoView = new ImageView(netflixLogo);
     logoView.setFitHeight(30); // Ajuste conforme necessário
     logoView.setPreserveRatio(true);
@@ -107,10 +104,7 @@ public class LoginPage extends BorderPane {
     mainContent.setSpacing(50); // Espaçamento de 20px entre os elementos
 
     // Carregar a imagem de fundo
-    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundLogin.png")); // Substitua com
-                                                                                                        // o caminho
-                                                                                                        // correto da
-                                                                                                        // imagem
+    Image backgroundImage = new Image(getClass().getResourceAsStream("../assets/backgroundLogin.png")); // Substitua com o caminho correto da imagem
     BackgroundSize bgSize = new BackgroundSize(BackgroundSize.AUTO, BackgroundSize.AUTO, false, false, true, true);
     BackgroundImage bgImage = new BackgroundImage(backgroundImage, BackgroundRepeat.NO_REPEAT,
         BackgroundRepeat.NO_REPEAT, BackgroundPosition.CENTER, bgSize);

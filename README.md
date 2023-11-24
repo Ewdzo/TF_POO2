@@ -52,6 +52,6 @@ O sistema consiste em uma plataforma de compartilhamento de experiências com fi
     <li>JavaFX</li>
 </ul>
 
-Ao rodar o projeto pela primeira vez será nececessário a reconfiguração da "launch.json", onde deve ser adicionado "vmArgs": "--module-path \"./lib/javafx-sdk-21/lib\" --add-modules=javafx.controls,javafx.fxml" a última linha.
+Ao rodar o projeto pela primeira vez será nececessário a reconfiguração da "launch.json", onde deve ser adicionado "vmArgs": "--module-path \"./lib/javafx-sdk-21/lib\" --add-modules=javafx.controls,javafx.fxml" a última linha, e após isso o arquivo "persistence.xml" deve ser alterado com os dados referentes ao servidor MySQL que será utilizado.
 
 Após essa configuração deve ser possível rodar o projeto, possibilitando a alteração das camadas MVC para atender a outros tipos de sistema.
